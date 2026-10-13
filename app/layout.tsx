@@ -5,14 +5,17 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
   title: {
-    default: "Dr. Golechas | Thoughtful care, rooted in nature",
-    template: "%s | Dr. Golechas",
+    default: "Dr. Golecha's Herbal Farm | Nature's Goodness. Tradition's Wisdom.",
+    template: "%s | Dr. Golecha's Herbal Farm",
   },
   description:
-    "Discover thoughtfully selected farm essentials, wellness, and personal care from Dr. Golechas.",
+    "Discover herbal wellness, traditional Ayurvedic preparations, natural foods and botanical personal care from Dr. Golecha's Herbal Farm.",
+  icons: {
+    icon: "/dr-golechas-logo.png",
+  },
   openGraph: {
     type: "website",
-    siteName: "Dr. Golechas",
+    siteName: "Dr. Golecha's Herbal Farm",
   },
   twitter: {
     card: "summary_large_image",

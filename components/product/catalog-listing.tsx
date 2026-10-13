@@ -51,6 +51,7 @@ export function CatalogListing({
         level="h1"
       />
       <CatalogControls
+        key={JSON.stringify(filters)}
         action={action}
         categories={categories}
         filters={filters}

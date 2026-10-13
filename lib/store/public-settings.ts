@@ -11,7 +11,7 @@ const socialLabels: Record<string, string> = {
 
 export async function getPublicStoreIdentity() {
   const fallback = {
-    logo: "",
+    logo: "/dr-golechas-logo.png",
     storeName: "Dr. Golecha's Herbal Farm",
     tagline: "Herbal wellness from Maharashtra, India",
     contactInformation: {
@@ -33,7 +33,7 @@ export async function getPublicStoreIdentity() {
   const entries = Array.from(settings?.socialLinks.entries() ?? []);
 
   return {
-    logo: settings?.logo ?? fallback.logo,
+    logo: settings?.logo || fallback.logo,
     storeName: settings?.storeName || fallback.storeName,
     tagline: settings?.tagline ?? fallback.tagline,
     contactInformation: settings?.contactInformation ?? fallback.contactInformation,

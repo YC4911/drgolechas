@@ -21,7 +21,7 @@ export default function DisclaimerPage() {
       <div className="mt-6 max-w-3xl">
         <LegalContentNotice />
       </div>
-      <div className="mt-8 max-w-3xl space-y-6 text-sm leading-7 text-[#425554]">
+      <div className="mt-8 max-w-3xl space-y-6 text-sm leading-7 text-[var(--color-botanical-charcoal)]">
         <p>
           Product descriptions, ingredients, availability, prices, and imagery
           are provided to help customers make shopping decisions. Check the

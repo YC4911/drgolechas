@@ -68,7 +68,7 @@ export default async function CategoryPage({
           action={
             <Link
               href={`/shop/${encodeURIComponent(slug)}`}
-              className="bg-teal inline-flex min-h-11 items-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b]"
+              className="bg-teal inline-flex min-h-11 items-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)]"
             >
               Clear filters
             </Link>

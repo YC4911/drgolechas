@@ -20,7 +20,7 @@ export default function ShopError({
         <button
           type="button"
           onClick={reset}
-          className="bg-teal mt-6 min-h-11 rounded-sm px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b]"
+          className="bg-teal mt-6 min-h-11 rounded-sm px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)]"
         >
           Try again
         </button>

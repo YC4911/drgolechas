@@ -12,10 +12,8 @@ import {
 import { ProductCard } from "@/components/product/product-card";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { getStoreCategories } from "@/lib/store-categories";
 import { getHomepageContent } from "@/lib/store/homepage-content";
 import { getPublicStoreIdentity } from "@/lib/store/public-settings";
-import { isNextImageSourceConfigured } from "@/lib/images";
 import { absoluteUrl } from "@/lib/seo/site-url";
 
 export const metadata: Metadata = {
@@ -58,8 +56,7 @@ const values = [
 ];
 
 export default async function HomePage() {
-  const [categories, content, identity] = await Promise.all([
-    getStoreCategories(),
+  const [content, identity] = await Promise.all([
     getHomepageContent(),
     getPublicStoreIdentity(),
   ]);
@@ -67,28 +64,29 @@ export default async function HomePage() {
   return (
     <>
       <section className="bg-cream overflow-hidden">
-        <Container className="grid min-h-[580px] items-center gap-10 py-12 sm:py-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:py-20">
-          <div className="relative z-10 max-w-xl animate-[fade-up_700ms_ease-out_both]">
-            <p className="mb-5 text-xs font-semibold tracking-[0.19em] text-[#8c6a2d] uppercase">
+        <Container className="grid items-center gap-10 py-12 sm:py-16 xl:min-h-[680px] xl:grid-cols-[0.88fr_1.12fr] xl:gap-16 xl:py-20">
+          <div className="relative z-10 max-w-xl animate-[fade-up_700ms_ease-out_both] xl:py-10">
+            <p className="mb-6 text-xs font-semibold tracking-[0.2em] text-[var(--color-herbal-gold)] uppercase">
               Herbal wellness, naturally
             </p>
-            <h1 className="font-display text-teal text-5xl leading-[1.02] sm:text-6xl lg:text-[72px]">
-              Nature&apos;s Goodness. Tradition&apos;s Wisdom.
+            <h1 className="font-display text-teal text-[clamp(2.25rem,5vw,3.5rem)] leading-[0.98] font-medium tracking-[-0.045em] xl:text-[clamp(2.75rem,4vw,3.5rem)]">
+              <span className="block">Nature&apos;s Goodness.</span>
+              <span className="mt-1 block">Tradition&apos;s Wisdom.</span>
             </h1>
             {identity.tagline ? (
-              <p className="text-teal/70 mt-5 text-xs font-semibold tracking-[0.2em] uppercase">
+              <p className="text-teal/70 mt-6 text-xs font-semibold tracking-[0.2em] uppercase">
                 {identity.tagline}
               </p>
             ) : null}
-            <p className="text-ink/75 mt-5 max-w-md text-base leading-7 sm:text-lg sm:leading-8">
+            <p className="text-ink/75 mt-6 max-w-md text-base leading-7 sm:text-lg sm:leading-8">
               Discover thoughtfully crafted herbal wellness, traditional
               Ayurvedic preparations, natural foods and botanical personal care
               from Dr. Golecha&apos;s Herbal Farm.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="/shop"
-                className="bg-teal inline-flex min-h-12 items-center justify-center gap-2 rounded-sm px-6 text-sm font-semibold text-white transition-colors hover:bg-[#0c4b5b]"
+                className="bg-teal inline-flex min-h-12 items-center justify-center gap-2 rounded-sm px-6 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-botanical-charcoal)]"
               >
                 Shop All Products <ArrowRight aria-hidden="true" size={16} />
               </Link>
@@ -101,7 +99,7 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="relative mx-auto aspect-[1.2/1] w-full max-w-2xl overflow-hidden rounded-sm bg-[#d8ddc8] lg:aspect-[1.18/1]">
+          <div className="relative mx-auto aspect-[1.15/1] w-full max-w-2xl overflow-hidden rounded-sm bg-[var(--color-natural-beige)] xl:aspect-[0.96/1]">
             <Image
               src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=90"
               alt="Natural herbal wellness ingredients and traditional products"
@@ -126,106 +124,96 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section id="categories" className="scroll-mt-8 py-16 sm:py-20 lg:py-24">
-        <Container>
-          <SectionHeading
-            eyebrow="Shop by category"
-            title="Thoughtful care in every category"
-            description="Explore farm essentials, traditional wellness, and herbal personal care for everyday rituals."
-          />
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3">
-            {categories.map((category, index) => (
-              <Link
-                key={category.slug}
-                href={`/shop?category=${encodeURIComponent(category.slug)}`}
-                className={`group bg-teal relative isolate flex min-h-[280px] items-end overflow-hidden rounded-sm ${index === 0 ? "sm:col-span-2 lg:col-span-1" : ""}`}
-              >
-                {category.image ? (
-                  <Image
-                    src={category.image}
-                    alt={`${category.name} category`}
-                    fill
-                    unoptimized={!isNextImageSourceConfigured(category.image)}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="-z-20 object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
-                ) : null}
-                <div className="from-teal/85 via-teal/15 absolute inset-0 -z-10 bg-gradient-to-t to-transparent" />
-                <div className="flex w-full items-end justify-between gap-4 p-5 sm:p-6">
-                  <div className="text-white">
-                    <h3 className="font-display text-2xl sm:text-3xl">
-                      {category.name}
-                    </h3>
-                    <p className="mt-1 text-sm text-white/80">
-                      {category.description}
-                    </p>
-                  </div>
-                  <span className="group-hover:text-teal grid size-10 shrink-0 place-items-center rounded-full border border-white/50 text-white transition-colors group-hover:bg-white">
-                    <ArrowRight aria-hidden="true" size={17} />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-[#fbfaf5] py-16 sm:py-20 lg:py-24">
+      <section
+        className="bg-[var(--color-warm-ivory)] py-20 sm:py-24 lg:py-28"
+        aria-label={
+          content.featured.some(({ product }) => product.badge === "Top Pick")
+            ? "Featured products"
+            : "Shop products"
+        }
+      >
         <Container>
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <SectionHeading
-              eyebrow="A few favourites"
-              title="Made for your everyday"
-              description="A closer look at some thoughtful picks from our collection."
+              eyebrow={
+                content.featured.some(
+                  ({ product }) => product.badge === "Top Pick",
+                )
+                  ? "Top picks"
+                  : "Explore the collection"
+              }
+              title={
+                content.featured.some(
+                  ({ product }) => product.badge === "Top Pick",
+                )
+                  ? "Made for your everyday"
+                  : "Shop our products"
+              }
+              description={
+                content.featured.some(
+                  ({ product }) => product.badge === "Top Pick",
+                )
+                  ? "A closer look at some thoughtful picks from our collection."
+                  : "Browse products from our farm, wellness, and personal care collections."
+              }
             />
             <Link
               href="/shop"
-              className="text-teal inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold hover:text-[#0c4b5b] sm:mb-1 sm:self-auto"
+              className="text-teal inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold hover:text-[var(--color-botanical-charcoal)] sm:mb-1 sm:self-auto"
             >
               View all products <ArrowRight aria-hidden="true" size={16} />
             </Link>
           </div>
-          <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:mt-10 lg:grid-cols-4">
-            {content.featured.map(({ product, href }) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                detailHref={href}
-              />
-            ))}
-          </div>
+          {content.featured.length ? (
+            <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:mt-12 lg:grid-cols-4 lg:gap-x-8">
+              {content.featured.map(({ product, href }) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  detailHref={href}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 text-sm text-[var(--color-forest-olive)]">
+              Products are being added to the collection. Please check back
+              soon.
+            </p>
+          )}
         </Container>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24">
-        <Container>
-          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-            <SectionHeading
-              eyebrow="Just arrived"
-              title="Meet what’s new"
-              description="Fresh additions to make your everyday feel a little more considered."
-            />
-            <Link
-              href="/new-arrivals"
-              className="text-teal inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold hover:text-[#0c4b5b] sm:mb-1 sm:self-auto"
-            >
-              Explore new arrivals <ArrowRight aria-hidden="true" size={16} />
-            </Link>
-          </div>
-          <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:mt-10 lg:grid-cols-4">
-            {content.newArrivals.map(({ product, href }) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                detailHref={href}
+      {content.newArrivals.length ? (
+        <section className="py-20 sm:py-24 lg:py-28">
+          <Container>
+            <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+              <SectionHeading
+                eyebrow="Just arrived"
+                title="Meet what’s new"
+                description="Fresh additions to make your everyday feel a little more considered."
               />
-            ))}
-          </div>
-        </Container>
-      </section>
+              <Link
+                href="/new-arrivals"
+                className="text-teal inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold hover:text-[var(--color-botanical-charcoal)] sm:mb-1 sm:self-auto"
+              >
+                Explore new arrivals <ArrowRight aria-hidden="true" size={16} />
+              </Link>
+            </div>
+            <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:mt-12 lg:grid-cols-4 lg:gap-x-8">
+              {content.newArrivals.map(({ product, href }) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  detailHref={href}
+                />
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       {content.reviews.length || content.testimonials.length ? (
-        <section className="bg-[#fbfaf5] py-16 sm:py-20">
+        <section className="bg-[var(--color-warm-ivory)] py-16 sm:py-20">
           <Container>
             <SectionHeading
               eyebrow="From our customers"
@@ -237,10 +225,10 @@ export default async function HomePage() {
               {content.reviews.map((review) => (
                 <article
                   key={review.id}
-                  className="rounded border border-[#e0e6e3] bg-white p-5"
+                  className="rounded border border-[var(--color-natural-beige)] bg-white p-5"
                 >
                   <div
-                    className="flex gap-1 text-[#c7a65b]"
+                    className="flex gap-1 text-[var(--color-herbal-gold)]"
                     aria-label={`${review.rating} out of 5 stars`}
                   >
                     {Array.from({ length: 5 }, (_, index) => (
@@ -251,18 +239,18 @@ export default async function HomePage() {
                         className={
                           index < review.rating
                             ? "fill-current"
-                            : "text-[#d9dfdc]"
+                            : "text-[var(--color-natural-beige)]"
                         }
                       />
                     ))}
                   </div>
-                  <h3 className="mt-3 font-semibold text-[#18343a]">
+                  <h3 className="mt-3 font-semibold text-[var(--color-botanical-charcoal)]">
                     {review.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-[#55696b]">
+                  <p className="mt-2 text-sm leading-6 text-[var(--color-botanical-charcoal)]">
                     {review.comment}
                   </p>
-                  <p className="mt-4 text-xs text-[#68787a]">
+                  <p className="mt-4 text-xs text-[var(--color-forest-olive)]">
                     {review.reviewer} · {review.productName}
                     {review.verifiedPurchase ? " · Verified purchase" : ""}
                   </p>
@@ -271,16 +259,16 @@ export default async function HomePage() {
               {content.testimonials.map((testimonial) => (
                 <article
                   key={testimonial.id}
-                  className="rounded border border-[#e0e6e3] bg-white p-5"
+                  className="rounded border border-[var(--color-natural-beige)] bg-white p-5"
                 >
-                  <p className="font-display text-lg leading-7 text-[#315054]">
+                  <p className="font-display text-lg leading-7 text-[var(--color-forest-olive)]">
                     “{testimonial.quote}”
                   </p>
-                  <p className="mt-4 text-sm font-semibold text-[#18343a]">
+                  <p className="mt-4 text-sm font-semibold text-[var(--color-botanical-charcoal)]">
                     {testimonial.authorName}
                   </p>
                   {testimonial.attribution ? (
-                    <p className="mt-1 text-xs text-[#68787a]">
+                    <p className="mt-1 text-xs text-[var(--color-forest-olive)]">
                       {testimonial.attribution}
                     </p>
                   ) : null}
@@ -291,7 +279,7 @@ export default async function HomePage() {
               <div className="mt-6 text-center">
                 <Link
                   href="/shop"
-                  className="text-sm font-semibold text-[#0b6472] hover:underline"
+                  className="text-sm font-semibold text-[var(--color-forest-olive)] hover:underline"
                 >
                   Explore products and customer reviews{" "}
                   <ArrowRight className="ml-1 inline" size={15} />
@@ -304,9 +292,9 @@ export default async function HomePage() {
 
       {identity.socialLinks.length ? (
         <section className="py-14 sm:py-18">
-          <Container className="flex flex-col items-start justify-between gap-5 rounded-lg bg-[#083847] p-6 text-white sm:flex-row sm:items-center sm:p-9">
+          <Container className="flex flex-col items-start justify-between gap-5 rounded-lg bg-[var(--color-forest-olive)] p-6 text-white sm:flex-row sm:items-center sm:p-9">
             <div>
-              <p className="text-xs font-semibold tracking-[0.14em] text-[#e0c27d] uppercase">
+              <p className="text-xs font-semibold tracking-[0.14em] text-[var(--color-herbal-gold)] uppercase">
                 Stay connected
               </p>
               <h2 className="font-display mt-2 text-2xl sm:text-3xl">

@@ -198,7 +198,7 @@ export default async function ProductPage({ params }: PageProps) {
           </div>
 
           <div className="py-1 lg:py-5">
-            <p className="text-xs font-semibold tracking-[0.16em] text-[#8c6a2d] uppercase">
+            <p className="text-xs font-semibold tracking-[0.16em] text-[var(--color-herbal-gold)] uppercase">
               {product.subcategory?.name ?? product.category?.name}
             </p>
             <h1 className="font-display text-teal mt-3 text-4xl leading-tight sm:text-5xl">
@@ -238,15 +238,15 @@ export default async function ProductPage({ params }: PageProps) {
                     <span className="text-muted text-sm line-through">
                       {formatPrice(product.mrp)}
                     </span>
-                    <span className="text-sm font-medium text-[#7c5a1c]">
+                    <span className="text-sm font-medium text-[var(--color-herbal-gold)]">
                       {product.discountPercentage}% off
                     </span>
                   </>
                 ) : null}
               </div>
             ) : (
-              <div className="border-line mt-6 rounded border bg-[#fbfaf5] p-4">
-                <p className="text-sm font-semibold text-[#7c5a1c]">
+              <div className="border-line mt-6 rounded border bg-[var(--color-warm-ivory)] p-4">
+                <p className="text-sm font-semibold text-[var(--color-herbal-gold)]">
                   Unavailable — {product.publicationStatus.replaceAll("_", " ")}
                 </p>
                 <p className="text-muted mt-1 text-xs">
@@ -256,7 +256,7 @@ export default async function ProductPage({ params }: PageProps) {
               </div>
             )}
             <p
-              className={`mt-3 text-sm font-medium ${product.stock > 0 ? "text-[#35664b]" : "text-muted"}`}
+              className={`mt-3 text-sm font-medium ${product.stock > 0 ? "text-[var(--color-forest-olive)]" : "text-muted"}`}
             >
               {product.stock > 0
                 ? `${product.stock} in stock`
@@ -348,7 +348,7 @@ export default async function ProductPage({ params }: PageProps) {
             ) : null}
 
             {!product.productDetailsVerified ? (
-              <p className="mt-5 rounded bg-[#fff8e7] p-3 text-xs leading-5 text-[#6d5528]">
+              <p className="mt-5 rounded bg-[var(--color-warm-ivory)] p-3 text-xs leading-5 text-[var(--color-herbal-gold)]">
                 Draft product information — verify the final formulation,
                 directions and applicable licence before publication.
               </p>
@@ -382,7 +382,7 @@ export default async function ProductPage({ params }: PageProps) {
       />
 
       {relatedProducts.length > 0 ? (
-        <section className="border-line border-t bg-[#fbfaf5] py-14 sm:py-18">
+        <section className="border-line border-t bg-[var(--color-warm-ivory)] py-14 sm:py-18">
           <Container>
             <SectionHeading
               eyebrow="Continue browsing"

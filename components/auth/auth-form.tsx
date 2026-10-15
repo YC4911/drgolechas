@@ -121,7 +121,7 @@ export function AuthForm({
 
   return (
     <div className="mx-auto w-full max-w-md">
-      <p className="text-xs font-semibold tracking-[0.16em] text-[#8c6a2d] uppercase">
+      <p className="text-xs font-semibold tracking-[0.16em] text-[var(--color-herbal-gold)] uppercase">
         Your account
       </p>
       <h1 className="font-display text-teal mt-3 text-4xl">{content.title}</h1>

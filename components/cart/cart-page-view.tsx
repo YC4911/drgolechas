@@ -181,7 +181,7 @@ export function CartPageView({
             action={
               <Link
                 href="/shop"
-                className="bg-teal inline-flex min-h-11 items-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b]"
+                className="bg-teal inline-flex min-h-11 items-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)]"
               >
                 Browse the collection
               </Link>
@@ -359,7 +359,7 @@ export function CartPageView({
               {cart.totals.discount > 0 ? (
                 <div className="flex justify-between">
                   <dt className="text-muted">Product savings</dt>
-                  <dd className="text-[#35664b]">
+                  <dd className="text-[var(--color-forest-olive)]">
                     −{formatPrice(cart.totals.discount)}
                   </dd>
                 </div>
@@ -367,7 +367,7 @@ export function CartPageView({
               {cart.totals.couponDiscount > 0 ? (
                 <div className="flex justify-between">
                   <dt className="text-muted">Coupon discount</dt>
-                  <dd className="text-[#35664b]">
+                  <dd className="text-[var(--color-forest-olive)]">
                     −{formatPrice(cart.totals.couponDiscount)}
                   </dd>
                 </div>
@@ -392,7 +392,7 @@ export function CartPageView({
             <Link
               href="/checkout"
               aria-disabled={!cart.canCheckout}
-              className={`bg-teal mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b] ${cart.canCheckout ? "" : "pointer-events-none opacity-50"}`}
+              className={`bg-teal mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)] ${cart.canCheckout ? "" : "pointer-events-none opacity-50"}`}
             >
               Continue to checkout
             </Link>

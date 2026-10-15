@@ -16,7 +16,7 @@ export default function OrderTrackingPage() {
         description="Track your order once it is dispatched and confirmed by the store team."
         level="h1"
       />
-      <div className="mt-8 max-w-3xl space-y-5 text-sm leading-7 text-[#425554]">
+      <div className="mt-8 max-w-3xl space-y-5 text-sm leading-7 text-[var(--color-botanical-charcoal)]">
         <p>
           Once an order has been confirmed and dispatched, customers may receive
           shipping details, courier information, and a tracking reference from

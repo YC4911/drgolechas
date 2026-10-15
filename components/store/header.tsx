@@ -23,6 +23,21 @@ type MainCategory = {
   imageAlt: string;
 };
 
+type NavigationLink = {
+  label: string;
+  href: string;
+};
+
+type NavigationItem =
+  | { type: "link"; label: string; href: string }
+  | { type: "category"; label: string }
+  | {
+      type: "dropdown";
+      id: string;
+      label: string;
+      links: NavigationLink[];
+    };
+
 const mainCategories: MainCategory[] = [
   {
     name: "Farm Essentials",
@@ -55,6 +70,45 @@ const mainCategories: MainCategory[] = [
   },
 ];
 
+const navigation: NavigationItem[] = [
+  { type: "link", label: "Home", href: "/" },
+  { type: "link", label: "Shop All", href: "/shop" },
+  { type: "category", label: "Category" },
+  {
+    type: "dropdown",
+    id: "about",
+    label: "About",
+    links: [
+      { label: "Our story", href: "/about" },
+      { label: "Our quality promise", href: "/quality" },
+      { label: "Membership & rewards", href: "/membership" },
+      { label: "Contact us", href: "/contact" },
+    ],
+  },
+  {
+    type: "dropdown",
+    id: "support",
+    label: "Support",
+    links: [
+      { label: "Frequently asked questions", href: "/faq" },
+      { label: "Shipping policy", href: "/shipping-policy" },
+      { label: "Returns & replacements", href: "/returns" },
+      { label: "Order tracking", href: "/order-tracking" },
+    ],
+  },
+  {
+    type: "dropdown",
+    id: "policies",
+    label: "Policies",
+    links: [
+      { label: "Privacy policy", href: "/privacy-policy" },
+      { label: "Terms of service", href: "/terms" },
+      { label: "Disclaimer", href: "/disclaimer" },
+      { label: "Cancellation policy", href: "/cancellation-policy" },
+    ],
+  },
+];
+
 function IconLink({
   href,
   label,
@@ -84,8 +138,10 @@ export function Header({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
+  const [mobileOpenMenu, setMobileOpenMenu] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [activePreview, setActivePreview] = useState<string | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const categoryCards = mainCategories.map((mainCategory) => {
     const category = categories.find(
@@ -102,35 +158,33 @@ export function Header({
     };
   });
 
-  const navigation = [
-    { label: "Home", href: "/" },
-    { label: "Shop All", href: "/shop" },
-    { label: "Category", href: "" },
-    { label: "About Us", href: "/about" },
-    { label: "Contact", href: "/contact" },
-  ];
-
   return (
     <>
       <AnnouncementBar />
       <header
         className="border-line bg-paper relative z-20 border-b"
-        onPointerLeave={() => setActivePreview(null)}
+        onPointerLeave={() => {
+          setActivePreview(null);
+          setActiveDropdown(null);
+        }}
         onKeyDown={(event) => {
           if (event.key === "Escape") {
             setActivePreview(null);
+            setActiveDropdown(null);
             setMobileMenuOpen(false);
             setMobileCategoriesOpen(false);
+            setMobileOpenMenu(null);
             setSearchOpen(false);
           }
         }}
         onBlur={(event) => {
           if (!event.currentTarget.contains(event.relatedTarget)) {
             setActivePreview(null);
+            setActiveDropdown(null);
           }
         }}
       >
-        <div className="relative flex h-[88px] items-center justify-center sm:h-[100px]">
+        <div className="border-line relative flex h-[88px] items-center justify-center sm:h-[100px] lg:border-b">
           <div className="absolute left-4 lg:hidden">
             <button
               type="button"
@@ -155,6 +209,28 @@ export function Header({
             </button>
           </div>
 
+          <form
+            action="/shop"
+            role="search"
+            className="border-line bg-paper absolute left-4 hidden h-10 w-44 items-center border px-2 lg:flex xl:w-52"
+          >
+            <label className="sr-only" htmlFor="desktop-site-search">
+              Search products
+            </label>
+            <input
+              id="desktop-site-search"
+              name="q"
+              type="search"
+              placeholder="Search products"
+              className="min-w-0 flex-1 bg-transparent px-2 text-sm text-[var(--color-botanical-charcoal)] outline-none placeholder:text-[var(--color-muted-sage)]"
+            />
+            <Search
+              aria-hidden="true"
+              size={17}
+              className="shrink-0 text-[var(--color-muted-sage)]"
+            />
+          </form>
+
           <Link
             href="/"
             className="flex shrink-0 items-center"
@@ -172,7 +248,7 @@ export function Header({
           </Link>
 
           <div className="absolute right-3 flex shrink-0 items-center gap-0.5 sm:right-5">
-            <div className="relative">
+            <div className="relative lg:hidden">
               <button
                 type="button"
                 aria-label={searchOpen ? "Close search" : "Search products"}
@@ -207,70 +283,155 @@ export function Header({
                   placeholder="Search the store"
                   className="min-w-0 flex-1 bg-transparent px-3 text-sm outline-none"
                 />
-                <button
-                  type="submit"
-                  className="bg-teal rounded-sm px-3 text-sm text-white hover:bg-[#0c4b5b]"
-                >
-                  Search
-                </button>
+                <Search
+                  aria-hidden="true"
+                  size={17}
+                  className="shrink-0 self-center text-[var(--color-muted-sage)]"
+                />
               </form>
             </div>
             <IconLink href="/account" label="Your account">
               <UserRound aria-hidden="true" size={19} />
             </IconLink>
-            <IconLink href="/wishlist" label="Wishlist">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                width="18"
-                height="18"
-                aria-hidden="true"
-              >
-                <path d="M12 20.25s-7.5-4.35-9.75-8.18C.72 9.56 2.09 5.25 6.08 5.25c2.18 0 3.42 1.15 4.24 2.26.82-1.11 2.06-2.26 4.24-2.26 3.99 0 5.36 4.31 3.83 6.82C19.5 15.9 12 20.25 12 20.25Z" />
-              </svg>
-            </IconLink>
+            <div className="hidden lg:block">
+              <IconLink href="/wishlist" label="Wishlist">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                >
+                  <path d="M12 20.25s-7.5-4.35-9.75-8.18C.72 9.56 2.09 5.25 6.08 5.25c2.18 0 3.42 1.15 4.24 2.26.82-1.11 2.06-2.26 4.24-2.26 3.99 0 5.36 4.31 3.83 6.82C19.5 15.9 12 20.25 12 20.25Z" />
+                </svg>
+              </IconLink>
+            </div>
             <CartDrawer />
           </div>
         </div>
 
         <nav
           aria-label="Main navigation"
-          className="hidden min-h-12 items-center justify-center gap-5 px-4 pb-2 lg:flex xl:gap-8"
+          className="relative hidden min-h-12 items-center justify-center gap-5 px-4 pb-2 lg:flex xl:gap-7"
         >
           {navigation.map((item) => {
-            const isCategory = item.label === "Category";
-            const isActive = isCategory && activePreview !== null;
+            if (item.type === "link") {
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onPointerEnter={() => {
+                    setActivePreview(null);
+                    setActiveDropdown(null);
+                  }}
+                  onFocus={() => {
+                    setActivePreview(null);
+                    setActiveDropdown(null);
+                  }}
+                  className="text-ink hover:text-teal relative py-2 text-sm font-medium whitespace-nowrap transition-colors after:absolute after:right-0 after:bottom-0 after:left-0 after:h-px after:origin-left after:scale-x-0 after:bg-[var(--color-herbal-gold)] after:transition-transform hover:after:scale-x-100"
+                >
+                  {item.label}
+                </Link>
+              );
+            }
 
-            return isCategory ? (
-              <button
-                key={item.label}
-                type="button"
-                aria-haspopup="true"
-                aria-expanded={isActive}
-                aria-controls="category-preview"
-                onPointerEnter={() => setActivePreview("category")}
-                onFocus={() => setActivePreview("category")}
-                onClick={() => setActivePreview("category")}
-                className={`relative py-2 text-sm font-medium whitespace-nowrap transition-colors after:absolute after:right-0 after:bottom-0 after:left-0 after:h-px after:origin-left after:bg-[#9a875d] after:transition-transform ${
-                  isActive
-                    ? "text-teal after:scale-x-100"
-                    : "text-ink hover:text-teal after:scale-x-0 hover:after:scale-x-100"
-                }`}
+            if (item.type === "category") {
+              const isActive = activePreview !== null;
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={isActive}
+                  aria-controls="category-preview"
+                  onPointerEnter={() => {
+                    setActiveDropdown(null);
+                    setActivePreview("category");
+                  }}
+                  onFocus={() => {
+                    setActiveDropdown(null);
+                    setActivePreview("category");
+                  }}
+                  onClick={() => {
+                    setActiveDropdown(null);
+                    setActivePreview("category");
+                  }}
+                  className={`relative py-2 text-sm font-medium whitespace-nowrap transition-colors after:absolute after:right-0 after:bottom-0 after:left-0 after:h-px after:origin-left after:bg-[var(--color-herbal-gold)] after:transition-transform ${
+                    isActive
+                      ? "text-teal after:scale-x-100"
+                      : "text-ink hover:text-teal after:scale-x-0 hover:after:scale-x-100"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            }
+
+            const isActive = activeDropdown === item.id;
+            const panelId = `desktop-navigation-${item.id}`;
+
+            return (
+              <div
+                key={item.id}
+                className="relative"
+                onPointerEnter={() => {
+                  setActivePreview(null);
+                  setActiveDropdown(item.id);
+                }}
               >
-                {item.label}
-              </button>
-            ) : (
-              <Link
-                key={item.label}
-                href={item.href}
-                onPointerEnter={() => setActivePreview(null)}
-                onFocus={() => setActivePreview(null)}
-                className={`relative py-2 text-sm font-medium whitespace-nowrap transition-colors after:absolute after:right-0 after:bottom-0 after:left-0 after:h-px after:origin-left after:bg-[#9a875d] after:transition-transform ${"text-ink hover:text-teal after:scale-x-0 hover:after:scale-x-100"}`}
-              >
-                {item.label}
-              </Link>
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={isActive}
+                  aria-controls={panelId}
+                  onFocus={() => {
+                    setActivePreview(null);
+                    setActiveDropdown(item.id);
+                  }}
+                  onClick={() =>
+                    setActiveDropdown((openMenu) =>
+                      openMenu === item.id ? null : item.id,
+                    )
+                  }
+                  className={`relative py-2 text-sm font-medium whitespace-nowrap transition-colors after:absolute after:right-0 after:bottom-0 after:left-0 after:h-px after:origin-left after:bg-[var(--color-herbal-gold)] after:transition-transform ${
+                    isActive
+                      ? "text-teal after:scale-x-100"
+                      : "text-ink hover:text-teal after:scale-x-0 hover:after:scale-x-100"
+                  }`}
+                >
+                  <span className="inline-flex items-center gap-1">
+                    {item.label}
+                    <ChevronDown
+                      aria-hidden="true"
+                      size={14}
+                      className={`transition-transform ${isActive ? "rotate-180" : ""}`}
+                    />
+                  </span>
+                </button>
+                <div
+                  id={panelId}
+                  aria-label={`${item.label} links`}
+                  aria-hidden={!isActive}
+                  inert={!isActive}
+                  data-open={isActive}
+                  className="border-line bg-paper absolute top-full left-1/2 z-40 min-w-56 -translate-x-1/2 border p-2 shadow-lg transition-[opacity,transform,visibility] duration-200 ease-out data-[open=false]:invisible data-[open=false]:-translate-y-1 data-[open=false]:opacity-0 data-[open=true]:visible data-[open=true]:translate-y-0 data-[open=true]:opacity-100 motion-reduce:transition-none"
+                >
+                  {item.links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      tabIndex={isActive ? undefined : -1}
+                      onFocus={() => setActiveDropdown(item.id)}
+                      onPointerEnter={() => setActiveDropdown(item.id)}
+                      className="text-ink hover:bg-cream hover:text-teal block px-3 py-2.5 text-sm transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             );
           })}
         </nav>
@@ -281,52 +442,112 @@ export function Header({
           hidden={!mobileMenuOpen}
           className="border-line bg-paper absolute top-full right-0 left-0 z-30 border-t p-3 shadow-lg lg:hidden"
         >
-          {navigation.map((item) =>
-            item.label === "Category" ? (
-              <div key={item.label} className="border-line border-b">
+          {navigation.map((item) => {
+            if (item.type === "link") {
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="border-line text-ink hover:text-teal block border-b px-3 py-3 text-sm last:border-0"
+                >
+                  {item.label}
+                </Link>
+              );
+            }
+
+            if (item.type === "category") {
+              return (
+                <div key={item.label} className="border-line border-b">
+                  <button
+                    type="button"
+                    aria-expanded={mobileCategoriesOpen}
+                    aria-controls="mobile-category-links"
+                    onClick={() => {
+                      setMobileOpenMenu(null);
+                      setMobileCategoriesOpen((isOpen) => !isOpen);
+                    }}
+                    className="text-ink hover:text-teal flex w-full items-center justify-between px-3 py-3 text-left text-sm"
+                  >
+                    Category
+                    <ChevronDown
+                      aria-hidden="true"
+                      size={16}
+                      className={`transition-transform ${mobileCategoriesOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  {mobileCategoriesOpen ? (
+                    <div id="mobile-category-links" className="pb-2 pl-4">
+                      {categoryCards.map((category) => (
+                        <Link
+                          key={category.slug}
+                          href={category.href}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            setMobileCategoriesOpen(false);
+                          }}
+                          className="text-muted hover:text-teal block px-3 py-2 text-sm"
+                        >
+                          {category.name}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            }
+
+            const isOpen = mobileOpenMenu === item.id;
+            const panelId = `mobile-navigation-${item.id}`;
+
+            return (
+              <div key={item.id} className="border-line border-b">
                 <button
                   type="button"
-                  aria-expanded={mobileCategoriesOpen}
-                  aria-controls="mobile-category-links"
-                  onClick={() => setMobileCategoriesOpen((isOpen) => !isOpen)}
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => {
+                    setMobileCategoriesOpen(false);
+                    setMobileOpenMenu((openMenu) =>
+                      openMenu === item.id ? null : item.id,
+                    );
+                  }}
                   className="text-ink hover:text-teal flex w-full items-center justify-between px-3 py-3 text-left text-sm"
                 >
-                  Category
+                  {item.label}
                   <ChevronDown
                     aria-hidden="true"
                     size={16}
-                    className={`transition-transform ${mobileCategoriesOpen ? "rotate-180" : ""}`}
+                    className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
-                {mobileCategoriesOpen ? (
-                  <div id="mobile-category-links" className="pb-2 pl-4">
-                    {categoryCards.map((category) => (
+                {isOpen ? (
+                  <div id={panelId} className="pb-2 pl-4">
+                    {item.links.map((link) => (
                       <Link
-                        key={category.slug}
-                        href={category.href}
+                        key={link.href}
+                        href={link.href}
                         onClick={() => {
                           setMobileMenuOpen(false);
-                          setMobileCategoriesOpen(false);
+                          setMobileOpenMenu(null);
                         }}
                         className="text-muted hover:text-teal block px-3 py-2 text-sm"
                       >
-                        {category.name}
+                        {link.label}
                       </Link>
                     ))}
                   </div>
                 ) : null}
               </div>
-            ) : (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="border-line text-ink hover:text-teal block border-b px-3 py-3 text-sm last:border-0"
-              >
-                {item.label}
-              </Link>
-            ),
-          )}
+            );
+          })}
+          <Link
+            href="/wishlist"
+            onClick={() => setMobileMenuOpen(false)}
+            className="border-line text-ink hover:text-teal block border-b px-3 py-3 text-sm last:border-0"
+          >
+            Wishlist
+          </Link>
         </nav>
 
         <div
@@ -347,8 +568,8 @@ export function Header({
                 onPointerEnter={() => setActivePreview(category.slug)}
                 className={`group flex min-h-24 items-center gap-4 rounded-sm border p-3 transition-colors duration-200 sm:min-h-36 sm:flex-col sm:items-stretch sm:gap-3 sm:p-3 ${
                   activePreview === category.slug
-                    ? "border-[#9a875d] bg-[#f7f3e8]"
-                    : "border-line bg-white hover:border-[#b4c2b2] hover:bg-[#fbfaf5]"
+                    ? "border-[var(--color-herbal-gold)] bg-[var(--color-warm-ivory)]"
+                    : "border-line bg-white hover:border-[var(--color-muted-sage)] hover:bg-[var(--color-warm-ivory)]"
                 }`}
               >
                 <div className="bg-cream relative aspect-[4/3] w-24 shrink-0 overflow-hidden rounded-sm sm:aspect-[2/1] sm:w-full">
@@ -362,10 +583,10 @@ export function Header({
                   />
                 </div>
                 <div className="min-w-0">
-                  <h2 className="font-display text-lg leading-tight text-[#183f38] sm:text-xl">
+                  <h2 className="font-display text-lg leading-tight text-[var(--color-forest-olive)] sm:text-xl">
                     {category.name}
                   </h2>
-                  <p className="mt-1 text-xs leading-5 text-[#68787a] sm:text-sm">
+                  <p className="mt-1 text-xs leading-5 text-[var(--color-forest-olive)] sm:text-sm">
                     {category.description}
                   </p>
                 </div>

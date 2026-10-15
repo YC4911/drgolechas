@@ -17,7 +17,7 @@ export default function MembershipPage() {
         description="A proposed membership programme is being developed to offer selected benefits with clear terms and permissions."
         level="h1"
       />
-      <div className="mt-8 max-w-3xl space-y-6 text-sm leading-7 text-[#425554]">
+      <div className="mt-8 max-w-3xl space-y-6 text-sm leading-7 text-[var(--color-botanical-charcoal)]">
         <p>
           A three-month conscious wellness pass and related rewards options are
           being considered as proposals. Any active programme will be announced

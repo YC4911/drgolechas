@@ -17,7 +17,7 @@ export default function TermsOfConsciousServicePage() {
         description="We aim to serve with clarity, respect, and thoughtful attention to customer needs."
         level="h1"
       />
-      <div className="mt-8 max-w-3xl space-y-6 text-sm leading-7 text-[#425554]">
+      <div className="mt-8 max-w-3xl space-y-6 text-sm leading-7 text-[var(--color-botanical-charcoal)]">
         <p>
           Our service approach is grounded in respect, transparency, and
           practical communication. We aim to support customers with honest

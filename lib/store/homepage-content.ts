@@ -70,7 +70,7 @@ function productCards(
       publicationStatus: item.publicationStatus,
       cartEnabled: item.purchasable,
       variants: item.variants,
-      badge: item.newArrival ? "New" : undefined,
+      badge: item.featured ? "Top Pick" : item.newArrival ? "New" : undefined,
     },
   }));
 }
@@ -108,8 +108,13 @@ export async function getHomepageContent(): Promise<{
       .lean()
       .exec(),
   ]);
+  const homepageProducts =
+    featured.products.length > 0
+      ? featured
+      : await listProducts({ ...defaultFilters, sort: "featured" });
+
   return {
-    featured: productCards(featured.products),
+    featured: productCards(homepageProducts.products),
     newArrivals: productCards(arrivals.products),
     reviews: reviews.map((review) => {
       const user =

@@ -951,13 +951,13 @@ export function AdminResourceConsole({
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold tracking-[0.15em] text-[#8c6a2d] uppercase">
+          <p className="text-xs font-semibold tracking-[0.15em] text-[var(--color-herbal-gold)] uppercase">
             Store management
           </p>
-          <h1 className="font-display mt-2 text-3xl text-[#083847] sm:text-4xl">
+          <h1 className="font-display mt-2 text-3xl text-[var(--color-forest-olive)] sm:text-4xl">
             {definition.title}
           </h1>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#68787a]">
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--color-forest-olive)]">
             {definition.description}
           </p>
         </div>
@@ -965,14 +965,14 @@ export function AdminResourceConsole({
           resource === "products" ? (
             <Link
               href="/admin/products/new"
-              className="inline-flex min-h-11 items-center gap-2 rounded bg-[#083847] px-4 text-sm font-semibold text-white hover:bg-[#0c4b5b]"
+              className="inline-flex min-h-11 items-center gap-2 rounded bg-[var(--color-forest-olive)] px-4 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)]"
             >
               <Plus size={16} /> New product
             </Link>
           ) : (
             <button
               onClick={beginCreate}
-              className="inline-flex min-h-11 items-center gap-2 rounded bg-[#083847] px-4 text-sm font-semibold text-white hover:bg-[#0c4b5b]"
+              className="inline-flex min-h-11 items-center gap-2 rounded bg-[var(--color-forest-olive)] px-4 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)]"
             >
               <Plus size={16} /> New{" "}
               {resource === "testimonials"
@@ -1012,7 +1012,7 @@ export function AdminResourceConsole({
             <label className="relative min-w-[min(100%,18rem)] flex-1">
               <Search
                 size={16}
-                className="absolute top-1/2 left-3 -translate-y-1/2 text-[#87938f]"
+                className="absolute top-1/2 left-3 -translate-y-1/2 text-[var(--color-forest-olive)]"
               />
               <input
                 value={search}
@@ -1021,7 +1021,7 @@ export function AdminResourceConsole({
                   setSearch(event.target.value);
                 }}
                 placeholder={`Search ${definition.title.toLowerCase()}`}
-                className="min-h-11 w-full rounded border border-[#dfe6e3] bg-white pr-3 pl-9 text-sm outline-none focus:border-[#0d5968]"
+                className="min-h-11 w-full rounded border border-[var(--color-natural-beige)] bg-white pr-3 pl-9 text-sm outline-none focus:border-[var(--color-forest-olive)]"
               />
             </label>
             {[
@@ -1038,7 +1038,7 @@ export function AdminResourceConsole({
                   setPage(1);
                   setActiveFilter(event.target.value);
                 }}
-                className="min-h-11 rounded border border-[#dfe6e3] bg-white px-3 text-sm"
+                className="min-h-11 rounded border border-[var(--color-natural-beige)] bg-white px-3 text-sm"
               >
                 <option value="">All states</option>
                 <option value="true">
@@ -1063,7 +1063,7 @@ export function AdminResourceConsole({
                     setCategoryFilter(event.target.value);
                   }}
                   placeholder="Category ID"
-                  className="min-h-11 w-44 rounded border border-[#dfe6e3] bg-white px-3 text-sm"
+                  className="min-h-11 w-44 rounded border border-[var(--color-natural-beige)] bg-white px-3 text-sm"
                 />
                 <select
                   aria-label="Sort products"
@@ -1072,7 +1072,7 @@ export function AdminResourceConsole({
                     setPage(1);
                     setSort(event.target.value);
                   }}
-                  className="min-h-11 rounded border border-[#dfe6e3] bg-white px-3 text-sm"
+                  className="min-h-11 rounded border border-[var(--color-natural-beige)] bg-white px-3 text-sm"
                 >
                   <option value="newest">Recently updated</option>
                   <option value="name">Name</option>
@@ -1090,7 +1090,7 @@ export function AdminResourceConsole({
                   setPage(1);
                   setStatusFilter(event.target.value);
                 }}
-                className="min-h-11 rounded border border-[#dfe6e3] bg-white px-3 text-sm capitalize"
+                className="min-h-11 rounded border border-[var(--color-natural-beige)] bg-white px-3 text-sm capitalize"
               >
                 <option value="">All order statuses</option>
                 {[
@@ -1119,7 +1119,7 @@ export function AdminResourceConsole({
                   setPage(1);
                   setStatusFilter(event.target.value);
                 }}
-                className="min-h-11 rounded border border-[#dfe6e3] bg-white px-3 text-sm capitalize"
+                className="min-h-11 rounded border border-[var(--color-natural-beige)] bg-white px-3 text-sm capitalize"
               >
                 <option value="">All moderation states</option>
                 {["pending", "approved", "rejected"].map((status) => (
@@ -1130,7 +1130,7 @@ export function AdminResourceConsole({
               </select>
             ) : null}
             <button
-              className="grid min-h-11 min-w-12 place-items-center rounded border border-[#dfe6e3] bg-white text-[#083847]"
+              className="grid min-h-11 min-w-12 place-items-center rounded border border-[var(--color-natural-beige)] bg-white text-[var(--color-forest-olive)]"
               aria-label="Search"
             >
               <Search size={16} />
@@ -1138,9 +1138,9 @@ export function AdminResourceConsole({
           </form>
           {loading ? (
             <div className="mt-6 animate-pulse space-y-3">
-              <div className="h-16 rounded bg-[#e9eeeb]" />
-              <div className="h-16 rounded bg-[#e9eeeb]" />
-              <div className="h-16 rounded bg-[#e9eeeb]" />
+              <div className="h-16 rounded bg-[var(--color-natural-beige)]" />
+              <div className="h-16 rounded bg-[var(--color-natural-beige)]" />
+              <div className="h-16 rounded bg-[var(--color-natural-beige)]" />
             </div>
           ) : visibleItems.length ? (
             <div className="mt-5 space-y-3">
@@ -1150,22 +1150,22 @@ export function AdminResourceConsole({
                 return (
                   <article
                     key={rowId}
-                    className="flex flex-wrap items-center justify-between gap-4 rounded-lg border border-[#e0e6e3] bg-white p-4 shadow-[0_2px_8px_rgba(10,45,50,.03)] sm:px-5"
+                    className="flex flex-wrap items-center justify-between gap-4 rounded-lg border border-[var(--color-natural-beige)] bg-white p-4 shadow-[0_2px_8px_rgba(10,45,50,.03)] sm:px-5"
                   >
                     <button
                       onClick={() => void editRecord(row)}
                       className="min-w-0 flex-1 text-left"
                     >
-                      <span className="block truncate font-semibold text-[#18343a]">
+                      <span className="block truncate font-semibold text-[var(--color-botanical-charcoal)]">
                         {presentation.title}
                       </span>
-                      <span className="mt-1 block text-xs leading-5 text-[#68787a]">
+                      <span className="mt-1 block text-xs leading-5 text-[var(--color-forest-olive)]">
                         {presentation.subtitle}
                       </span>
                     </button>
                     <div className="flex items-center gap-3">
                       <span
-                        className={`rounded-full px-2.5 py-1 text-[11px] font-semibold capitalize ${presentation.status.toLowerCase().includes("active") || presentation.status.toLowerCase().includes("approved") || presentation.status === "Enabled" || presentation.status === "delivered" ? "bg-emerald-50 text-emerald-800" : "bg-[#f4f0e5] text-[#765c26]"}`}
+                        className={`rounded-full px-2.5 py-1 text-[11px] font-semibold capitalize ${presentation.status.toLowerCase().includes("active") || presentation.status.toLowerCase().includes("approved") || presentation.status === "Enabled" || presentation.status === "delivered" ? "bg-emerald-50 text-emerald-800" : "bg-[var(--color-warm-ivory)] text-[var(--color-herbal-gold)]"}`}
                       >
                         {presentation.status}
                       </span>
@@ -1187,7 +1187,7 @@ export function AdminResourceConsole({
                               onClick={() =>
                                 void changeStatus(rowId, { approved: false })
                               }
-                              className="text-xs font-semibold text-[#765c26] hover:underline"
+                              className="text-xs font-semibold text-[var(--color-herbal-gold)] hover:underline"
                             >
                               Reject
                             </button>
@@ -1218,11 +1218,11 @@ export function AdminResourceConsole({
               })}
             </div>
           ) : (
-            <div className="mt-6 rounded-lg border border-dashed border-[#d7dfdc] bg-white p-10 text-center">
-              <p className="font-medium text-[#18343a]">
+            <div className="mt-6 rounded-lg border border-dashed border-[var(--color-natural-beige)] bg-white p-10 text-center">
+              <p className="font-medium text-[var(--color-botanical-charcoal)]">
                 No {definition.title.toLowerCase()} found
               </p>
-              <p className="mt-1 text-sm text-[#68787a]">
+              <p className="mt-1 text-sm text-[var(--color-forest-olive)]">
                 {search
                   ? "Try changing your search."
                   : "New records will appear here."}
@@ -1230,7 +1230,7 @@ export function AdminResourceConsole({
             </div>
           )}
           {!loading && totalItems > 50 ? (
-            <div className="mt-5 flex items-center justify-between gap-3 text-sm text-[#68787a]">
+            <div className="mt-5 flex items-center justify-between gap-3 text-sm text-[var(--color-forest-olive)]">
               <span>
                 {(page - 1) * 50 + 1}–{Math.min(page * 50, totalItems)} of{" "}
                 {totalItems}
@@ -1240,7 +1240,7 @@ export function AdminResourceConsole({
                   type="button"
                   disabled={page <= 1}
                   onClick={() => setPage((current) => current - 1)}
-                  className="min-h-10 rounded border border-[#dfe6e3] px-3 disabled:opacity-50"
+                  className="min-h-10 rounded border border-[var(--color-natural-beige)] px-3 disabled:opacity-50"
                 >
                   Previous
                 </button>
@@ -1248,7 +1248,7 @@ export function AdminResourceConsole({
                   type="button"
                   disabled={page * 50 >= totalItems}
                   onClick={() => setPage((current) => current + 1)}
-                  className="min-h-10 rounded border border-[#dfe6e3] px-3 disabled:opacity-50"
+                  className="min-h-10 rounded border border-[var(--color-natural-beige)] px-3 disabled:opacity-50"
                 >
                   Next
                 </button>
@@ -1261,11 +1261,11 @@ export function AdminResourceConsole({
       {editor || createMode || !isList ? (
         <form
           onSubmit={submit}
-          className="mt-6 rounded-lg border border-[#e0e6e3] bg-white p-4 shadow-[0_2px_8px_rgba(10,45,50,.03)] sm:p-6"
+          className="mt-6 rounded-lg border border-[var(--color-natural-beige)] bg-white p-4 shadow-[0_2px_8px_rgba(10,45,50,.03)] sm:p-6"
         >
-          <div className="mb-5 flex items-center justify-between gap-3 border-b border-[#e8ece9] pb-4">
+          <div className="mb-5 flex items-center justify-between gap-3 border-b border-[var(--color-natural-beige)] pb-4">
             <div>
-              <h2 className="font-display text-2xl text-[#083847]">
+              <h2 className="font-display text-2xl text-[var(--color-forest-olive)]">
                 {editor
                   ? `Edit ${definition.title.slice(0, -1)}`
                   : definition.creatable
@@ -1273,7 +1273,7 @@ export function AdminResourceConsole({
                     : "Configuration"}
               </h2>
               {editor && resource === "orders" ? (
-                <p className="mt-1 text-xs text-[#68787a]">
+                <p className="mt-1 text-xs text-[var(--color-forest-olive)]">
                   {String(editor.orderNumber ?? "")} · payment{" "}
                   {readableStatus(editor.paymentStatus)}
                 </p>
@@ -1287,7 +1287,7 @@ export function AdminResourceConsole({
                   setEditor(null);
                   setNotice("");
                 }}
-                className="grid size-9 place-items-center rounded hover:bg-[#f1f4f2]"
+                className="grid size-9 place-items-center rounded hover:bg-[var(--color-warm-ivory)]"
               >
                 <X size={17} />
               </button>
@@ -1295,7 +1295,7 @@ export function AdminResourceConsole({
           </div>
 
           {resource === "orders" && editor ? (
-            <div className="mb-5 grid gap-3 rounded bg-[#f7f8f6] p-4 text-sm sm:grid-cols-2">
+            <div className="mb-5 grid gap-3 rounded bg-[var(--color-warm-ivory)] p-4 text-sm sm:grid-cols-2">
               <p>
                 <span className="font-semibold">Customer:</span>{" "}
                 {String(
@@ -1326,7 +1326,7 @@ export function AdminResourceConsole({
           ) : null}
 
           {resource === "customers" && editor ? (
-            <div className="mb-5 grid gap-2 rounded bg-[#f7f8f6] p-4 text-sm">
+            <div className="mb-5 grid gap-2 rounded bg-[var(--color-warm-ivory)] p-4 text-sm">
               <p>
                 <strong>{String(editor.name ?? "")}</strong> ·{" "}
                 {String(editor.email ?? "")} · {String(editor.phone ?? "")}
@@ -1343,12 +1343,12 @@ export function AdminResourceConsole({
           ) : null}
 
           {resource === "reviews" && editor ? (
-            <div className="mb-5 rounded bg-[#f7f8f6] p-4 text-sm leading-6">
+            <div className="mb-5 rounded bg-[var(--color-warm-ivory)] p-4 text-sm leading-6">
               <p className="font-semibold">
                 {String(editor.title ?? "")} · {String(editor.rating ?? "")}/5
               </p>
               <p className="mt-2">{String(editor.comment ?? "")}</p>
-              <p className="mt-2 text-xs text-[#68787a]">
+              <p className="mt-2 text-xs text-[var(--color-forest-olive)]">
                 {String(
                   (editor.user as Record<string, unknown> | undefined)?.name ??
                     "",
@@ -1368,16 +1368,16 @@ export function AdminResourceConsole({
               return (
                 <label
                   key={field.name}
-                  className={`block text-xs font-semibold text-[#18343a] ${field.type === "textarea" || field.type === "json" ? "sm:col-span-2" : ""}`}
+                  className={`block text-xs font-semibold text-[var(--color-botanical-charcoal)] ${field.type === "textarea" || field.type === "json" ? "sm:col-span-2" : ""}`}
                 >
                   {field.type === "checkbox" ? (
-                    <span className="flex min-h-11 items-center gap-3 rounded border border-[#e3e8e5] px-3 text-sm">
+                    <span className="flex min-h-11 items-center gap-3 rounded border border-[var(--color-natural-beige)] px-3 text-sm">
                       <input
                         type="checkbox"
                         checked={Boolean(value)}
                         disabled={!canWrite}
                         onChange={(event) => changeField(field, event)}
-                        className="size-4 accent-[#083847]"
+                        className="size-4 accent-[var(--color-forest-olive)]"
                       />
                       {field.label}
                     </span>
@@ -1392,7 +1392,7 @@ export function AdminResourceConsole({
                             setNested(current, field.name, event.target.value),
                           )
                         }
-                        className="mt-1.5 min-h-11 w-full rounded border border-[#dfe6e3] bg-white px-3 font-normal capitalize outline-none focus:border-[#0d5968]"
+                        className="mt-1.5 min-h-11 w-full rounded border border-[var(--color-natural-beige)] bg-white px-3 font-normal capitalize outline-none focus:border-[var(--color-forest-olive)]"
                       >
                         {(field.options ?? []).map((option) => (
                           <option
@@ -1413,7 +1413,7 @@ export function AdminResourceConsole({
                         readOnly={!canWrite}
                         onChange={(event) => changeField(field, event)}
                         rows={field.type === "json" ? 5 : 3}
-                        className="mt-1.5 w-full rounded border border-[#dfe6e3] bg-white p-3 font-normal outline-none read-only:bg-[#f7f8f6] focus:border-[#0d5968]"
+                        className="mt-1.5 w-full rounded border border-[var(--color-natural-beige)] bg-white p-3 font-normal outline-none read-only:bg-[var(--color-warm-ivory)] focus:border-[var(--color-forest-olive)]"
                         placeholder={field.placeholder}
                       />
                     </>
@@ -1426,13 +1426,13 @@ export function AdminResourceConsole({
                         readOnly={!canWrite}
                         onChange={(event) => changeField(field, event)}
                         step={field.type === "number" ? "any" : undefined}
-                        className="mt-1.5 min-h-11 w-full rounded border border-[#dfe6e3] bg-white px-3 font-normal outline-none read-only:bg-[#f7f8f6] focus:border-[#0d5968]"
+                        className="mt-1.5 min-h-11 w-full rounded border border-[var(--color-natural-beige)] bg-white px-3 font-normal outline-none read-only:bg-[var(--color-warm-ivory)] focus:border-[var(--color-forest-olive)]"
                         placeholder={field.placeholder}
                       />
                     </>
                   )}
                   {field.help ? (
-                    <span className="mt-1 block leading-5 font-normal text-[#68787a]">
+                    <span className="mt-1 block leading-5 font-normal text-[var(--color-forest-olive)]">
                       {field.help}
                     </span>
                   ) : null}
@@ -1441,7 +1441,7 @@ export function AdminResourceConsole({
                     (resource === "categories" && field.name === "image") ||
                     (resource === "settings" && field.name === "logo")) ? (
                     <span className="mt-2 flex flex-wrap items-center gap-3">
-                      <label className="inline-flex min-h-9 cursor-pointer items-center gap-2 rounded border border-[#dfe6e3] px-3 text-xs font-semibold hover:bg-[#f7f8f6]">
+                      <label className="inline-flex min-h-9 cursor-pointer items-center gap-2 rounded border border-[var(--color-natural-beige)] px-3 text-xs font-semibold hover:bg-[var(--color-warm-ivory)]">
                         <Upload size={14} /> Upload image
                         <input
                           type="file"
@@ -1454,7 +1454,7 @@ export function AdminResourceConsole({
                           }}
                         />
                       </label>
-                      <span className="font-normal text-[#68787a]">
+                      <span className="font-normal text-[var(--color-forest-olive)]">
                         JPEG, PNG or WebP · max 5 MB
                       </span>
                     </span>
@@ -1464,7 +1464,7 @@ export function AdminResourceConsole({
             })}
           </div>
           {resource === "products" ? (
-            <p className="mt-4 rounded bg-[#f8f5eb] p-3 text-xs leading-5 text-[#715a26]">
+            <p className="mt-4 rounded bg-[var(--color-warm-ivory)] p-3 text-xs leading-5 text-[var(--color-herbal-gold)]">
               Use the uploaded image URL in the Images JSON array.
               Product/category IDs are available from their respective admin
               lists. All prices, variants and inventory are validated again by
@@ -1472,13 +1472,13 @@ export function AdminResourceConsole({
             </p>
           ) : null}
           {resource === "social" ? (
-            <p className="mt-4 text-xs text-[#68787a]">
+            <p className="mt-4 text-xs text-[var(--color-forest-olive)]">
               Leave a link blank to remove it. Only valid http(s) URLs are
               accepted.
             </p>
           ) : null}
           {resource === "customers" && editor ? (
-            <div className="mt-4 rounded border border-[#e3e8e5] p-4">
+            <div className="mt-4 rounded border border-[var(--color-natural-beige)] p-4">
               <p className="text-sm font-semibold">Recent order history</p>
               {Array.isArray(settings.orders) ? (
                 (settings.orders as ApiRecord[]).map((order) => (
@@ -1488,17 +1488,17 @@ export function AdminResourceConsole({
                   </p>
                 ))
               ) : (
-                <p className="mt-2 text-xs text-[#68787a]">
+                <p className="mt-2 text-xs text-[var(--color-forest-olive)]">
                   No order history loaded.
                 </p>
               )}
             </div>
           ) : null}
-          <div className="mt-6 flex flex-wrap gap-3 border-t border-[#e8ece9] pt-5">
+          <div className="mt-6 flex flex-wrap gap-3 border-t border-[var(--color-natural-beige)] pt-5">
             {canWrite ? (
               <button
                 disabled={saving}
-                className="min-h-11 rounded bg-[#083847] px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b] disabled:opacity-60"
+                className="min-h-11 rounded bg-[var(--color-forest-olive)] px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)] disabled:opacity-60"
               >
                 {saving ? "Saving…" : "Save changes"}
               </button>
@@ -1506,7 +1506,7 @@ export function AdminResourceConsole({
             {resource === "products" && editor ? (
               <Link
                 href={`/admin/products/${idOf(editor)}`}
-                className="min-h-11 rounded border border-[#dfe6e3] px-4 py-3 text-sm font-semibold text-[#083847] hover:bg-[#f7f8f6]"
+                className="min-h-11 rounded border border-[var(--color-natural-beige)] px-4 py-3 text-sm font-semibold text-[var(--color-forest-olive)] hover:bg-[var(--color-warm-ivory)]"
               >
                 Open full editor
               </Link>

@@ -12,16 +12,16 @@ export const dynamic = "force-dynamic";
 export default async function AdminLoginPage() {
   if (await getCurrentAdmin()) redirect("/admin");
   return (
-    <main className="grid min-h-screen bg-[#f7f8f6] lg:grid-cols-[1fr_1fr]">
-      <section className="hidden flex-col justify-between bg-[#083847] p-12 text-white lg:flex">
+    <main className="grid min-h-screen bg-[var(--color-warm-ivory)] lg:grid-cols-[1fr_1fr]">
+      <section className="hidden flex-col justify-between bg-[var(--color-forest-olive)] p-12 text-white lg:flex">
         <div>
           <p className="font-display text-3xl">Dr. Golechas</p>
-          <p className="mt-2 text-xs font-semibold tracking-[0.2em] text-[#d5b573] uppercase">
+          <p className="mt-2 text-xs font-semibold tracking-[0.2em] text-[var(--color-herbal-gold)] uppercase">
             Admin workspace
           </p>
         </div>
         <div className="max-w-lg">
-          <p className="text-sm font-semibold tracking-[0.17em] text-[#d5b573] uppercase">
+          <p className="text-sm font-semibold tracking-[0.17em] text-[var(--color-herbal-gold)] uppercase">
             Store operations
           </p>
           <h1 className="font-display mt-4 text-5xl leading-tight">
@@ -36,18 +36,18 @@ export default async function AdminLoginPage() {
         </p>
       </section>
       <section className="flex items-center justify-center px-5 py-12">
-        <div className="w-full max-w-md rounded-lg border border-[#e0e5e2] bg-white p-6 shadow-sm sm:p-9">
-          <p className="text-xs font-semibold tracking-[0.16em] text-[#8c6a2d] uppercase lg:hidden">
+        <div className="w-full max-w-md rounded-lg border border-[var(--color-natural-beige)] bg-white p-6 shadow-sm sm:p-9">
+          <p className="text-xs font-semibold tracking-[0.16em] text-[var(--color-herbal-gold)] uppercase lg:hidden">
             Dr. Golechas · Admin
           </p>
-          <h2 className="font-display mt-2 text-3xl text-[#083847]">
+          <h2 className="font-display mt-2 text-3xl text-[var(--color-forest-olive)]">
             Welcome back
           </h2>
-          <p className="mt-2 text-sm leading-6 text-[#68787a]">
+          <p className="mt-2 text-sm leading-6 text-[var(--color-forest-olive)]">
             Use your provisioned administrator account to continue.
           </p>
           <AdminLoginForm />
-          <p className="mt-5 text-xs leading-5 text-[#68787a]">
+          <p className="mt-5 text-xs leading-5 text-[var(--color-forest-olive)]">
             Admin access is provisioned by a Super Admin. Customer accounts
             cannot sign in here.
           </p>

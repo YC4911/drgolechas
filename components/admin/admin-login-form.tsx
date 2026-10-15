@@ -47,7 +47,7 @@ export function AdminLoginForm() {
           {error}
         </p>
       ) : null}
-      <label className="block text-sm font-medium text-[#18343a]">
+      <label className="block text-sm font-medium text-[var(--color-botanical-charcoal)]">
         Admin email
         <input
           name="email"
@@ -55,10 +55,10 @@ export function AdminLoginForm() {
           autoComplete="username"
           required
           maxLength={254}
-          className="mt-2 min-h-12 w-full rounded border border-[#dfe6e3] bg-white px-3 outline-none focus:border-[#0d5968]"
+          className="mt-2 min-h-12 w-full rounded border border-[var(--color-natural-beige)] bg-white px-3 outline-none focus:border-[var(--color-forest-olive)]"
         />
       </label>
-      <label className="block text-sm font-medium text-[#18343a]">
+      <label className="block text-sm font-medium text-[var(--color-botanical-charcoal)]">
         Password
         <input
           name="password"
@@ -66,12 +66,12 @@ export function AdminLoginForm() {
           autoComplete="current-password"
           required
           maxLength={128}
-          className="mt-2 min-h-12 w-full rounded border border-[#dfe6e3] bg-white px-3 outline-none focus:border-[#0d5968]"
+          className="mt-2 min-h-12 w-full rounded border border-[var(--color-natural-beige)] bg-white px-3 outline-none focus:border-[var(--color-forest-olive)]"
         />
       </label>
       <button
         disabled={busy}
-        className="min-h-12 w-full rounded bg-[#083847] px-4 text-sm font-semibold text-white hover:bg-[#0c4b5b] disabled:opacity-60"
+        className="min-h-12 w-full rounded bg-[var(--color-forest-olive)] px-4 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)] disabled:opacity-60"
       >
         {busy ? "Verifying access…" : "Sign in to admin"}
       </button>

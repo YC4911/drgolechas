@@ -54,8 +54,8 @@ function OptionButton({
       onClick={onClick}
       className={`min-h-12 rounded border px-4 py-3 text-left text-sm transition-colors ${
         selected
-          ? "border-[#0d5968] bg-[#e9f2ef] font-semibold text-[#083847]"
-          : "border-[#dfe6e3] bg-white text-[#31484b] hover:border-[#8ea9a2]"
+          ? "border-[var(--color-forest-olive)] bg-[var(--color-natural-beige)] font-semibold text-[var(--color-forest-olive)]"
+          : "border-[var(--color-natural-beige)] bg-white text-[var(--color-botanical-charcoal)] hover:border-[var(--color-muted-sage)]"
       }`}
     >
       {children}
@@ -123,28 +123,30 @@ export function ProductFinder({ options }: { options: FinderOptions }) {
   const progress = ((step + 1) / productFinderQuestions.length) * 100;
 
   return (
-    <section className="mt-8 overflow-hidden rounded-lg border border-[#dfe6e3] bg-white shadow-[0_8px_32px_rgba(10,45,50,.06)]">
+    <section className="mt-8 overflow-hidden rounded-lg border border-[var(--color-natural-beige)] bg-white shadow-[0_8px_32px_rgba(10,45,50,.06)]">
       {!hasResults ? (
         <>
-          <div className="border-b border-[#e8ece9] px-5 py-5 sm:px-8">
-            <div className="flex items-center justify-between text-xs font-semibold text-[#68787a]">
+          <div className="border-b border-[var(--color-natural-beige)] px-5 py-5 sm:px-8">
+            <div className="flex items-center justify-between text-xs font-semibold text-[var(--color-forest-olive)]">
               <span>
                 Question {step + 1} of {productFinderQuestions.length}
               </span>
               <span>{Math.round(progress)}% complete</span>
             </div>
-            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#edf0ed]">
+            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[var(--color-natural-beige)]">
               <div
-                className="h-full rounded-full bg-[#0d5968] transition-all"
+                className="h-full rounded-full bg-[var(--color-forest-olive)] transition-all"
                 style={{ width: `${progress}%` }}
               />
             </div>
           </div>
           <div className="min-h-72 px-5 py-7 sm:px-8 sm:py-9">
-            <h2 className="font-display text-2xl text-[#083847] sm:text-3xl">
+            <h2 className="font-display text-2xl text-[var(--color-forest-olive)] sm:text-3xl">
               {question.title}
             </h2>
-            <p className="mt-2 text-sm text-[#68787a]">{question.hint}</p>
+            <p className="mt-2 text-sm text-[var(--color-forest-olive)]">
+              {question.hint}
+            </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {question.key === "shoppingFor"
                 ? shoppingGoals.map((option) => (
@@ -290,12 +292,12 @@ export function ProductFinder({ options }: { options: FinderOptions }) {
               {error}
             </p>
           ) : null}
-          <div className="flex items-center justify-between border-t border-[#e8ece9] px-5 py-4 sm:px-8">
+          <div className="flex items-center justify-between border-t border-[var(--color-natural-beige)] px-5 py-4 sm:px-8">
             <button
               type="button"
               disabled={step === 0 || loading}
               onClick={() => setStep((current) => current - 1)}
-              className="inline-flex min-h-11 items-center gap-2 rounded px-3 text-sm font-semibold text-[#315054] disabled:invisible"
+              className="inline-flex min-h-11 items-center gap-2 rounded px-3 text-sm font-semibold text-[var(--color-forest-olive)] disabled:invisible"
             >
               <ArrowLeft size={16} /> Back
             </button>
@@ -304,7 +306,7 @@ export function ProductFinder({ options }: { options: FinderOptions }) {
                 type="button"
                 disabled={step === 0 && !answers.shoppingFor}
                 onClick={() => setStep((current) => current + 1)}
-                className="inline-flex min-h-11 items-center gap-2 rounded bg-[#083847] px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b] disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex min-h-11 items-center gap-2 rounded bg-[var(--color-forest-olive)] px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Continue <ArrowRight size={16} />
               </button>
@@ -313,7 +315,7 @@ export function ProductFinder({ options }: { options: FinderOptions }) {
                 type="button"
                 disabled={loading}
                 onClick={() => void showRecommendations()}
-                className="inline-flex min-h-11 items-center gap-2 rounded bg-[#083847] px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b] disabled:opacity-60"
+                className="inline-flex min-h-11 items-center gap-2 rounded bg-[var(--color-forest-olive)] px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)] disabled:opacity-60"
               >
                 {loading ? "Finding matches…" : "Show recommendations"}{" "}
                 <ArrowRight size={16} />
@@ -325,17 +327,17 @@ export function ProductFinder({ options }: { options: FinderOptions }) {
         <div className="p-5 sm:p-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold tracking-[0.14em] text-[#8c6a2d] uppercase">
+              <p className="text-xs font-semibold tracking-[0.14em] text-[var(--color-herbal-gold)] uppercase">
                 Your product matches
               </p>
-              <h2 className="font-display mt-2 text-3xl text-[#083847]">
+              <h2 className="font-display mt-2 text-3xl text-[var(--color-forest-olive)]">
                 A few good places to start
               </h2>
             </div>
             <button
               type="button"
               onClick={reset}
-              className="inline-flex min-h-10 items-center gap-2 rounded border border-[#dfe6e3] px-3 text-sm font-semibold text-[#315054]"
+              className="inline-flex min-h-10 items-center gap-2 rounded border border-[var(--color-natural-beige)] px-3 text-sm font-semibold text-[var(--color-forest-olive)]"
             >
               <RotateCcw size={15} /> Start over
             </button>
@@ -365,7 +367,7 @@ export function ProductFinder({ options }: { options: FinderOptions }) {
                       product={cardProduct}
                       detailHref={`/product/${encodeURIComponent(product.slug)}`}
                     />
-                    <p className="mt-3 text-xs leading-5 text-[#55696b]">
+                    <p className="mt-3 text-xs leading-5 text-[var(--color-botanical-charcoal)]">
                       {reason}
                     </p>
                   </div>
@@ -373,18 +375,18 @@ export function ProductFinder({ options }: { options: FinderOptions }) {
               })}
             </div>
           ) : (
-            <div className="mt-7 rounded border border-dashed border-[#d7dfdc] bg-[#fbfcfa] p-6 text-sm text-[#55696b]">
+            <div className="mt-7 rounded border border-dashed border-[var(--color-natural-beige)] bg-[var(--color-warm-ivory)] p-6 text-sm text-[var(--color-botanical-charcoal)]">
               No products match every selected filter right now. Try a different
               category, preference, or budget.
             </div>
           )}
-          <p className="mt-6 text-xs text-[#68787a]">
+          <p className="mt-6 text-xs text-[var(--color-forest-olive)]">
             Recommendations are based on product information and your
             selections, not medical advice.
           </p>
           <Link
             href="/shop"
-            className="mt-5 inline-flex min-h-10 items-center text-sm font-semibold text-[#0b6472] hover:underline"
+            className="mt-5 inline-flex min-h-10 items-center text-sm font-semibold text-[var(--color-forest-olive)] hover:underline"
           >
             Browse all products <ArrowRight className="ml-2" size={15} />
           </Link>

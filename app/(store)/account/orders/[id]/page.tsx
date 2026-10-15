@@ -64,7 +64,7 @@ export default async function OrderDetailPage({
       </Link>
       <header className="border-line mt-4 flex flex-wrap items-end justify-between gap-3 border-b pb-5">
         <div>
-          <p className="text-xs font-semibold tracking-[0.16em] text-[#8c6a2d] uppercase">
+          <p className="text-xs font-semibold tracking-[0.16em] text-[var(--color-herbal-gold)] uppercase">
             Order confirmation
           </p>
           <h1 className="font-display text-teal mt-2 text-3xl">
@@ -184,7 +184,7 @@ export default async function OrderDetailPage({
           {["paid", "cod", "refunded"].includes(order.paymentStatus) ? (
             <a
               href={`/api/account/orders/${encodeURIComponent(order._id.toString())}/invoice`}
-              className="border-line text-teal mt-5 inline-flex min-h-11 w-full items-center justify-center border px-4 text-sm font-semibold hover:bg-[#f7f3e8]"
+              className="border-line text-teal mt-5 inline-flex min-h-11 w-full items-center justify-center border px-4 text-sm font-semibold hover:bg-[var(--color-warm-ivory)]"
             >
               Download invoice PDF
             </a>

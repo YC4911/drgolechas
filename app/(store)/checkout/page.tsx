@@ -40,7 +40,7 @@ export default async function CheckoutPage() {
 
   return (
     <div className="mx-auto w-full max-w-[1320px] px-5 py-8 sm:px-8 sm:py-12 lg:px-12">
-      <p className="text-xs font-semibold tracking-[0.16em] text-[#8c6a2d] uppercase">
+      <p className="text-xs font-semibold tracking-[0.16em] text-[var(--color-herbal-gold)] uppercase">
         Secure checkout
       </p>
       <h1 className="font-display text-teal mt-2 text-4xl">

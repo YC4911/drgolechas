@@ -244,7 +244,7 @@ export function AccountDashboard({
     <div className="mx-auto w-full max-w-[1320px] px-5 py-8 sm:px-8 sm:py-12 lg:px-12">
       <div className="border-line flex flex-wrap items-end justify-between gap-4 border-b pb-6">
         <div>
-          <p className="text-xs font-semibold tracking-[0.16em] text-[#8c6a2d] uppercase">
+          <p className="text-xs font-semibold tracking-[0.16em] text-[var(--color-herbal-gold)] uppercase">
             Your account
           </p>
           <h1 className="font-display text-teal mt-2 text-4xl">

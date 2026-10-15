@@ -63,7 +63,7 @@ export function CatalogControls({
           <form
             action={action}
             method="get"
-            className="border-line mt-4 grid gap-4 border-y bg-[#fbfaf5] px-4 py-5 sm:grid-cols-2 sm:px-5 lg:grid-cols-4"
+            className="border-line mt-4 grid gap-4 border-y bg-[var(--color-warm-ivory)] px-4 py-5 sm:grid-cols-2 sm:px-5 lg:grid-cols-4"
           >
             {categoryLocked && filters.category ? (
               <input type="hidden" name="category" value={filters.category} />

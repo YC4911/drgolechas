@@ -133,7 +133,7 @@ export function AddToCartButton({
               <span className="text-muted text-xs line-through">
                 {formatPrice(selectedMrp)}
               </span>
-              <span className="text-xs font-medium text-[#7c5a1c]">
+              <span className="text-xs font-medium text-[var(--color-herbal-gold)]">
                 Save {formatPrice(selectedMrp - selectedPrice)} (
                 {Math.round(
                   ((selectedMrp - selectedPrice) / selectedMrp) * 100,
@@ -144,7 +144,7 @@ export function AddToCartButton({
           ) : null}
         </div>
       ) : (
-        <p className="mb-3 text-sm font-medium text-[#7c5a1c]">
+        <p className="mb-3 text-sm font-medium text-[var(--color-herbal-gold)]">
           Price pending approval
         </p>
       )}
@@ -172,7 +172,7 @@ export function AddToCartButton({
         </label>
       ) : null}
       {!availableForSale ? (
-        <p className="mb-3 text-sm font-medium text-[#7c5a1c]">
+        <p className="mb-3 text-sm font-medium text-[var(--color-herbal-gold)]">
           Unavailable — pending product approval
         </p>
       ) : selectedPriceApproved && available <= 0 ? (

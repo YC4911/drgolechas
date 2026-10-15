@@ -28,7 +28,7 @@ export function WhatsAppButton({ identity }: { identity: StoreIdentity }) {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed right-4 bottom-4 z-40 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#167b55] px-4 text-sm font-semibold text-white shadow-lg transition hover:bg-[#116746] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#083847] sm:right-6 sm:bottom-6"
+      className="fixed right-4 bottom-4 z-40 inline-flex min-h-12 items-center gap-2 rounded-full bg-[var(--color-forest-olive)] px-4 text-sm font-semibold text-white shadow-lg transition hover:bg-[var(--color-botanical-charcoal)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-forest-olive)] sm:right-6 sm:bottom-6"
     >
       <MessageCircle aria-hidden="true" size={19} />
       <span className="hidden sm:inline">Chat with us</span>

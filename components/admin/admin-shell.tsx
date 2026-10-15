@@ -120,16 +120,16 @@ export function AdminShell({
   }
 
   return (
-    <div className="min-h-screen bg-[#f7f8f6] text-[#18343a]">
+    <div className="min-h-screen bg-[var(--color-warm-ivory)] text-[var(--color-botanical-charcoal)]">
       {menuOpen ? (
         <button
           aria-label="Close admin navigation"
-          className="fixed inset-0 z-30 bg-[#061f27]/50 lg:hidden"
+          className="fixed inset-0 z-30 bg-[var(--color-forest-olive)]/50 lg:hidden"
           onClick={() => setMenuOpen(false)}
         />
       ) : null}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-[17rem] flex-col border-r border-[#dfe6e3] bg-[#083847] text-white transition-transform duration-200 lg:translate-x-0 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed inset-y-0 left-0 z-40 flex w-[17rem] flex-col border-r border-[var(--color-natural-beige)] bg-[var(--color-forest-olive)] text-white transition-transform duration-200 lg:translate-x-0 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex h-[4.5rem] items-center justify-between border-b border-white/10 px-5">
           <Link
@@ -138,7 +138,7 @@ export function AdminShell({
             onClick={() => setMenuOpen(false)}
           >
             <span className="font-display block text-xl">Dr. Golechas</span>
-            <span className="mt-1 block text-[10px] font-semibold tracking-[0.2em] text-[#d5b573] uppercase">
+            <span className="mt-1 block text-[10px] font-semibold tracking-[0.2em] text-[var(--color-herbal-gold)] uppercase">
               Admin workspace
             </span>
           </Link>
@@ -188,21 +188,21 @@ export function AdminShell({
       </aside>
 
       <div className="lg:pl-[17rem]">
-        <header className="sticky top-0 z-20 flex h-[4.5rem] items-center justify-between border-b border-[#dfe6e3] bg-white/95 px-4 backdrop-blur sm:px-7">
+        <header className="sticky top-0 z-20 flex h-[4.5rem] items-center justify-between border-b border-[var(--color-natural-beige)] bg-white/95 px-4 backdrop-blur sm:px-7">
           <div className="flex items-center gap-3">
             <button
               aria-label={menuOpen ? "Close navigation" : "Open navigation"}
               onClick={() => setMenuOpen((open) => !open)}
-              className="grid size-10 place-items-center rounded border border-[#dfe6e3] lg:hidden"
+              className="grid size-10 place-items-center rounded border border-[var(--color-natural-beige)] lg:hidden"
             >
               {menuOpen ? <ChevronLeft size={19} /> : <Menu size={19} />}
             </button>
-            <p className="hidden text-xs font-semibold tracking-[0.14em] text-[#74817e] uppercase sm:block">
+            <p className="hidden text-xs font-semibold tracking-[0.14em] text-[var(--color-forest-olive)] uppercase sm:block">
               Store management
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <span className="grid size-9 place-items-center rounded-full bg-[#f2eee2] text-xs font-bold text-[#715420]">
+            <span className="grid size-9 place-items-center rounded-full bg-[var(--color-warm-ivory)] text-xs font-bold text-[var(--color-herbal-gold)]">
               {admin.name
                 .split(/\s+/)
                 .map((part) => part[0])

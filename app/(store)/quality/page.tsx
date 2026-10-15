@@ -25,7 +25,7 @@ export default function QualityPage() {
         level="h1"
       />
       <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-        <div className="space-y-5 text-sm leading-7 text-[#425554]">
+        <div className="space-y-5 text-sm leading-7 text-[var(--color-botanical-charcoal)]">
           <p>
             Quality is not just a label. For us, it means reviewing ingredients,
             guidance, packaging information, and product communication with care
@@ -38,12 +38,14 @@ export default function QualityPage() {
             guessing.
           </p>
         </div>
-        <div className="rounded border border-[#e3e7e1] bg-[#f9f7f1] p-6">
-          <h2 className="font-display text-2xl text-[#18343a]">Our approach</h2>
-          <ul className="mt-5 space-y-3 text-sm text-[#425554]">
+        <div className="rounded border border-[var(--color-natural-beige)] bg-[var(--color-warm-ivory)] p-6">
+          <h2 className="font-display text-2xl text-[var(--color-botanical-charcoal)]">
+            Our approach
+          </h2>
+          <ul className="mt-5 space-y-3 text-sm text-[var(--color-botanical-charcoal)]">
             {points.map((point) => (
               <li key={point} className="flex gap-3">
-                <span className="mt-1 text-[#8c6a2d]">•</span>
+                <span className="mt-1 text-[var(--color-herbal-gold)]">•</span>
                 <span>{point}</span>
               </li>
             ))}

@@ -80,11 +80,11 @@ export function CartDrawer() {
           setOpen(true);
           void refreshCart();
         }}
-        className="relative grid size-10 place-items-center rounded-sm text-teal transition-colors hover:bg-cream"
+        className="text-teal hover:bg-cream relative grid size-10 place-items-center rounded-sm transition-colors"
       >
         <ShoppingBag aria-hidden="true" size={19} />
         {count > 0 ? (
-          <span className="absolute right-0.5 top-0.5 grid min-w-4 place-items-center rounded-full bg-gold px-1 text-[9px] font-bold text-teal">
+          <span className="bg-gold text-teal absolute top-0.5 right-0.5 grid min-w-4 place-items-center rounded-full px-1 text-[9px] font-bold">
             {count > 99 ? "99+" : count}
           </span>
         ) : null}
@@ -99,46 +99,57 @@ export function CartDrawer() {
         onClick={(event) => {
           if (event.target === dialogRef.current) setOpen(false);
         }}
-        className="fixed inset-y-0 right-0 left-auto m-0 h-dvh max-h-none w-[min(100vw,28rem)] max-w-none border-0 bg-paper p-0 text-ink shadow-2xl backdrop:bg-teal/40"
+        className="bg-paper text-ink backdrop:bg-teal/40 fixed inset-y-0 right-0 left-auto m-0 h-dvh max-h-none w-[min(100vw,28rem)] max-w-none border-0 p-0 shadow-2xl"
       >
         <div className="flex h-full flex-col">
-          <div className="flex items-center justify-between border-b border-line px-5 py-4">
+          <div className="border-line flex items-center justify-between border-b px-5 py-4">
             <div>
-              <h2 className="font-display text-2xl text-teal">Your cart</h2>
-              <p className="mt-1 text-xs text-muted">{count} item(s)</p>
+              <h2 className="font-display text-teal text-2xl">Your cart</h2>
+              <p className="text-muted mt-1 text-xs">{count} item(s)</p>
             </div>
             <button
               type="button"
               aria-label="Close cart"
               onClick={() => setOpen(false)}
-              className="grid size-10 place-items-center rounded-sm text-teal hover:bg-cream"
+              className="text-teal hover:bg-cream grid size-10 place-items-center rounded-sm"
             >
               <X aria-hidden="true" size={20} />
             </button>
           </div>
 
           {error ? (
-            <p role="alert" className="m-5 border border-[#a54535]/30 bg-[#fff7f4] p-3 text-sm text-[#8a3428]">
+            <p
+              role="alert"
+              className="m-5 border border-[#a54535]/30 bg-[#fff7f4] p-3 text-sm text-[#8a3428]"
+            >
               {error}
             </p>
           ) : null}
 
           {cart && cart.items.length > 0 ? (
             <>
-              <ul className="flex-1 divide-y divide-line overflow-y-auto px-5">
+              <ul className="divide-line flex-1 divide-y overflow-y-auto px-5">
                 {cart.items.map((item) => (
                   <li key={item.key} className="py-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-medium text-ink">{item.name}</p>
+                        <p className="text-ink truncate text-sm font-medium">
+                          {item.name}
+                        </p>
                         {item.variantName ? (
-                          <p className="mt-1 text-xs text-muted">{item.variantName}</p>
+                          <p className="text-muted mt-1 text-xs">
+                            {item.variantName}
+                          </p>
                         ) : null}
                         {item.status !== "available" ? (
-                          <p className="mt-1 text-xs text-[#8a3428]">{item.status === "out-of-stock" ? "Quantity exceeds available stock" : "Unavailable"}</p>
+                          <p className="mt-1 text-xs text-[#8a3428]">
+                            {item.status === "out-of-stock"
+                              ? "Quantity exceeds available stock"
+                              : "Unavailable"}
+                          </p>
                         ) : null}
                       </div>
-                      <p className="shrink-0 text-sm font-semibold text-teal">
+                      <p className="text-teal shrink-0 text-sm font-semibold">
                         {formatPrice(item.lineSubtotal)}
                       </p>
                     </div>
@@ -146,18 +157,30 @@ export function CartDrawer() {
                       <button
                         type="button"
                         aria-label={`Decrease ${item.name} quantity`}
-                        onClick={() => void mutateLine(item, item.quantity <= 1 ? "DELETE" : "PATCH", item.quantity - 1)}
-                        className="grid size-8 place-items-center rounded-sm border border-line text-teal hover:bg-cream"
+                        onClick={() =>
+                          void mutateLine(
+                            item,
+                            item.quantity <= 1 ? "DELETE" : "PATCH",
+                            item.quantity - 1,
+                          )
+                        }
+                        className="border-line text-teal hover:bg-cream grid size-8 place-items-center rounded-sm border"
                       >
                         <Minus aria-hidden="true" size={14} />
                       </button>
-                      <span className="min-w-6 text-center text-sm">{item.quantity}</span>
+                      <span className="min-w-6 text-center text-sm">
+                        {item.quantity}
+                      </span>
                       <button
                         type="button"
                         aria-label={`Increase ${item.name} quantity`}
-                        disabled={item.quantity >= 99 || item.quantity >= item.available}
-                        onClick={() => void mutateLine(item, "PATCH", item.quantity + 1)}
-                        className="grid size-8 place-items-center rounded-sm border border-line text-teal hover:bg-cream disabled:opacity-40"
+                        disabled={
+                          item.quantity >= 99 || item.quantity >= item.available
+                        }
+                        onClick={() =>
+                          void mutateLine(item, "PATCH", item.quantity + 1)
+                        }
+                        className="border-line text-teal hover:bg-cream grid size-8 place-items-center rounded-sm border disabled:opacity-40"
                       >
                         <Plus aria-hidden="true" size={14} />
                       </button>
@@ -165,7 +188,7 @@ export function CartDrawer() {
                         type="button"
                         aria-label={`Remove ${item.name}`}
                         onClick={() => void mutateLine(item, "DELETE")}
-                        className="ml-auto grid size-8 place-items-center rounded-sm text-muted hover:bg-cream hover:text-teal"
+                        className="text-muted hover:bg-cream hover:text-teal ml-auto grid size-8 place-items-center rounded-sm"
                       >
                         <Trash2 aria-hidden="true" size={15} />
                       </button>
@@ -173,16 +196,18 @@ export function CartDrawer() {
                   </li>
                 ))}
               </ul>
-              <div className="border-t border-line px-5 py-4">
+              <div className="border-line border-t px-5 py-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted">Total</span>
-                  <span className="font-semibold text-teal">{formatPrice(cart.totals.total)}</span>
+                  <span className="text-teal font-semibold">
+                    {formatPrice(cart.totals.total)}
+                  </span>
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-3">
                   <Link
                     href="/cart"
                     onClick={() => setOpen(false)}
-                    className="inline-flex min-h-11 items-center justify-center rounded-sm border border-teal/30 text-sm font-semibold text-teal hover:bg-cream"
+                    className="border-teal/30 text-teal hover:bg-cream inline-flex min-h-11 items-center justify-center rounded-sm border text-sm font-semibold"
                   >
                     View cart
                   </Link>
@@ -193,7 +218,7 @@ export function CartDrawer() {
                       if (!cart.canCheckout) event.preventDefault();
                       else setOpen(false);
                     }}
-                    className={`inline-flex min-h-11 items-center justify-center rounded-sm bg-teal text-sm font-semibold text-white hover:bg-[#0c4b5b] ${cart.canCheckout ? "" : "pointer-events-none opacity-50"}`}
+                    className={`bg-teal inline-flex min-h-11 items-center justify-center rounded-sm text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)] ${cart.canCheckout ? "" : "pointer-events-none opacity-50"}`}
                   >
                     Checkout
                   </Link>
@@ -203,12 +228,16 @@ export function CartDrawer() {
           ) : (
             <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
               <ShoppingBag aria-hidden="true" className="text-gold" size={30} />
-              <h3 className="mt-4 font-display text-2xl text-teal">Your cart is empty.</h3>
-              <p className="mt-2 text-sm text-muted">Find something thoughtful for your everyday.</p>
+              <h3 className="font-display text-teal mt-4 text-2xl">
+                Your cart is empty.
+              </h3>
+              <p className="text-muted mt-2 text-sm">
+                Find something thoughtful for your everyday.
+              </p>
               <Link
                 href="/shop"
                 onClick={() => setOpen(false)}
-                className="mt-5 inline-flex min-h-11 items-center rounded-sm bg-teal px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b]"
+                className="bg-teal mt-5 inline-flex min-h-11 items-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)]"
               >
                 Browse the collection
               </Link>

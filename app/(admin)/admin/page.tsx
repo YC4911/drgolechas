@@ -209,20 +209,20 @@ export default async function AdminPage() {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold tracking-[0.15em] text-[#8c6a2d] uppercase">
+          <p className="text-xs font-semibold tracking-[0.15em] text-[var(--color-herbal-gold)] uppercase">
             Store overview
           </p>
-          <h1 className="font-display mt-2 text-3xl text-[#083847] sm:text-4xl">
+          <h1 className="font-display mt-2 text-3xl text-[var(--color-forest-olive)] sm:text-4xl">
             Good day.
           </h1>
-          <p className="mt-2 text-sm text-[#68787a]">
+          <p className="mt-2 text-sm text-[var(--color-forest-olive)]">
             Your store at a glance. Revenue includes verified online payments
             only.
           </p>
         </div>
         <Link
           href="/admin/orders"
-          className="inline-flex min-h-10 items-center rounded border border-[#dfe6e3] bg-white px-4 text-sm font-semibold text-[#083847] hover:bg-[#f6f8f6]"
+          className="inline-flex min-h-10 items-center rounded border border-[var(--color-natural-beige)] bg-white px-4 text-sm font-semibold text-[var(--color-forest-olive)] hover:bg-[var(--color-warm-ivory)]"
         >
           Review orders
         </Link>
@@ -235,36 +235,38 @@ export default async function AdminPage() {
         {metrics.map((metric) => (
           <article
             key={metric.label}
-            className="rounded-lg border border-[#e0e6e3] bg-white p-5 shadow-[0_2px_8px_rgba(10,45,50,.03)]"
+            className="rounded-lg border border-[var(--color-natural-beige)] bg-white p-5 shadow-[0_2px_8px_rgba(10,45,50,.03)]"
           >
-            <p className="text-xs font-semibold tracking-[0.1em] text-[#68787a] uppercase">
+            <p className="text-xs font-semibold tracking-[0.1em] text-[var(--color-forest-olive)] uppercase">
               {metric.label}
             </p>
-            <p className="font-display mt-3 text-3xl text-[#083847]">
+            <p className="font-display mt-3 text-3xl text-[var(--color-forest-olive)]">
               {metric.value}
             </p>
-            <p className="mt-2 text-xs text-[#68787a]">{metric.note}</p>
+            <p className="mt-2 text-xs text-[var(--color-forest-olive)]">
+              {metric.note}
+            </p>
           </article>
         ))}
       </section>
 
       <section className="mt-5 grid gap-5 xl:grid-cols-[1.4fr_1fr]">
-        <article className="rounded-lg border border-[#e0e6e3] bg-white p-5 sm:p-6">
+        <article className="rounded-lg border border-[var(--color-natural-beige)] bg-white p-5 sm:p-6">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <h2 className="font-display text-2xl text-[#083847]">
+              <h2 className="font-display text-2xl text-[var(--color-forest-olive)]">
                 Revenue trend
               </h2>
-              <p className="mt-1 text-xs text-[#68787a]">
+              <p className="mt-1 text-xs text-[var(--color-forest-olive)]">
                 Verified payments · last 7 days
               </p>
             </div>
-            <span className="rounded-full bg-[#f4f0e5] px-3 py-1 text-[11px] font-semibold text-[#765c26]">
+            <span className="rounded-full bg-[var(--color-warm-ivory)] px-3 py-1 text-[11px] font-semibold text-[var(--color-herbal-gold)]">
               INR
             </span>
           </div>
           <div
-            className="mt-7 flex h-48 items-end gap-3 border-b border-[#e9eeeb] pb-2 sm:gap-5"
+            className="mt-7 flex h-48 items-end gap-3 border-b border-[var(--color-natural-beige)] pb-2 sm:gap-5"
             aria-label="Daily paid revenue bar chart"
           >
             {days.map((day) => (
@@ -272,41 +274,43 @@ export default async function AdminPage() {
                 key={day.key}
                 className="flex h-full min-w-0 flex-1 flex-col items-center justify-end gap-2"
               >
-                <span className="text-[10px] font-medium text-[#68787a]">
+                <span className="text-[10px] font-medium text-[var(--color-forest-olive)]">
                   {day.revenue ? formatPrice(day.revenue) : "—"}
                 </span>
                 <div
-                  className="w-full max-w-12 rounded-t bg-gradient-to-t from-[#0a4655] to-[#65a3a2]"
+                  className="w-full max-w-12 rounded-t bg-gradient-to-t from-[var(--color-forest-olive)] to-[var(--color-muted-sage)]"
                   style={{
                     height: `${Math.max(day.revenue ? 8 : 2, (day.revenue / maxRevenue) * 100)}%`,
                   }}
                   title={`${day.key}: ${formatPrice(day.revenue)}`}
                 />
-                <span className="text-[10px] text-[#68787a]">{day.label}</span>
+                <span className="text-[10px] text-[var(--color-forest-olive)]">
+                  {day.label}
+                </span>
               </div>
             ))}
           </div>
         </article>
 
-        <article className="rounded-lg border border-[#e0e6e3] bg-white p-5 sm:p-6">
+        <article className="rounded-lg border border-[var(--color-natural-beige)] bg-white p-5 sm:p-6">
           <div className="flex items-end justify-between gap-3">
             <div>
-              <h2 className="font-display text-2xl text-[#083847]">
+              <h2 className="font-display text-2xl text-[var(--color-forest-olive)]">
                 Low stock
               </h2>
-              <p className="mt-1 text-xs text-[#68787a]">
+              <p className="mt-1 text-xs text-[var(--color-forest-olive)]">
                 At or below configured threshold
               </p>
             </div>
             <Link
               href="/admin/products"
-              className="text-xs font-semibold text-[#0b6472] hover:underline"
+              className="text-xs font-semibold text-[var(--color-forest-olive)] hover:underline"
             >
               Manage products
             </Link>
           </div>
           {lowStockProducts.length ? (
-            <ul className="mt-4 divide-y divide-[#e9eeeb]">
+            <ul className="mt-4 divide-y divide-[var(--color-natural-beige)]">
               {lowStockProducts.map(
                 (item: {
                   _id: { toString(): string };
@@ -320,14 +324,14 @@ export default async function AdminPage() {
                     className="flex items-center justify-between gap-3 py-3"
                   >
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-[#18343a]">
+                      <p className="truncate text-sm font-semibold text-[var(--color-botanical-charcoal)]">
                         {item.name}
                       </p>
-                      <p className="mt-1 text-[11px] text-[#68787a]">
+                      <p className="mt-1 text-[11px] text-[var(--color-forest-olive)]">
                         {item.sku} · threshold {item.threshold}
                       </p>
                     </div>
-                    <span className="shrink-0 rounded bg-[#fff2df] px-2.5 py-1 text-xs font-bold text-[#865914]">
+                    <span className="shrink-0 rounded bg-[var(--color-warm-ivory)] px-2.5 py-1 text-xs font-bold text-[var(--color-herbal-gold)]">
                       {item.available} left
                     </span>
                   </li>
@@ -335,7 +339,7 @@ export default async function AdminPage() {
               )}
             </ul>
           ) : (
-            <p className="mt-5 rounded bg-[#f7f8f6] p-4 text-sm text-[#68787a]">
+            <p className="mt-5 rounded bg-[var(--color-warm-ivory)] p-4 text-sm text-[var(--color-forest-olive)]">
               No inventory records are at or below their low-stock thresholds.
             </p>
           )}
@@ -343,25 +347,25 @@ export default async function AdminPage() {
       </section>
 
       <section className="mt-5 grid gap-5 xl:grid-cols-2">
-        <article className="overflow-hidden rounded-lg border border-[#e0e6e3] bg-white">
-          <div className="flex items-center justify-between border-b border-[#e9eeeb] p-5">
+        <article className="overflow-hidden rounded-lg border border-[var(--color-natural-beige)] bg-white">
+          <div className="flex items-center justify-between border-b border-[var(--color-natural-beige)] p-5">
             <div>
-              <h2 className="font-display text-2xl text-[#083847]">
+              <h2 className="font-display text-2xl text-[var(--color-forest-olive)]">
                 Recent orders
               </h2>
-              <p className="mt-1 text-xs text-[#68787a]">
+              <p className="mt-1 text-xs text-[var(--color-forest-olive)]">
                 Latest customer activity
               </p>
             </div>
             <Link
               href="/admin/orders"
-              className="text-xs font-semibold text-[#0b6472] hover:underline"
+              className="text-xs font-semibold text-[var(--color-forest-olive)] hover:underline"
             >
               All orders
             </Link>
           </div>
           {recentOrders.length ? (
-            <div className="divide-y divide-[#e9eeeb]">
+            <div className="divide-y divide-[var(--color-natural-beige)]">
               {recentOrders.map((order) => {
                 const customer = order.user as {
                   name?: string;
@@ -373,19 +377,19 @@ export default async function AdminPage() {
                     className="flex flex-wrap items-center justify-between gap-2 px-5 py-3.5"
                   >
                     <div>
-                      <p className="text-sm font-semibold text-[#18343a]">
+                      <p className="text-sm font-semibold text-[var(--color-botanical-charcoal)]">
                         {order.orderNumber}
                       </p>
-                      <p className="mt-1 text-xs text-[#68787a]">
+                      <p className="mt-1 text-xs text-[var(--color-forest-olive)]">
                         {customer?.name ?? customer?.email ?? "Customer"} ·{" "}
                         {order.createdAt?.toLocaleDateString("en-IN") ?? ""}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold text-[#083847]">
+                      <p className="text-sm font-semibold text-[var(--color-forest-olive)]">
                         {formatPrice(order.total)}
                       </p>
-                      <p className="mt-1 text-[11px] text-[#68787a] capitalize">
+                      <p className="mt-1 text-[11px] text-[var(--color-forest-olive)] capitalize">
                         {formatStatus(order.orderStatus)} ·{" "}
                         {formatStatus(order.paymentStatus)}
                       </p>
@@ -395,21 +399,23 @@ export default async function AdminPage() {
               })}
             </div>
           ) : (
-            <p className="p-5 text-sm text-[#68787a]">No orders yet.</p>
+            <p className="p-5 text-sm text-[var(--color-forest-olive)]">
+              No orders yet.
+            </p>
           )}
         </article>
 
-        <article className="overflow-hidden rounded-lg border border-[#e0e6e3] bg-white">
-          <div className="border-b border-[#e9eeeb] p-5">
-            <h2 className="font-display text-2xl text-[#083847]">
+        <article className="overflow-hidden rounded-lg border border-[var(--color-natural-beige)] bg-white">
+          <div className="border-b border-[var(--color-natural-beige)] p-5">
+            <h2 className="font-display text-2xl text-[var(--color-forest-olive)]">
               Top products
             </h2>
-            <p className="mt-1 text-xs text-[#68787a]">
+            <p className="mt-1 text-xs text-[var(--color-forest-olive)]">
               Units ordered · excluding cancelled and returned orders
             </p>
           </div>
           {topProducts.length ? (
-            <ol className="divide-y divide-[#e9eeeb]">
+            <ol className="divide-y divide-[var(--color-natural-beige)]">
               {topProducts.map(
                 (
                   product: {
@@ -424,16 +430,16 @@ export default async function AdminPage() {
                     key={product._id.toString()}
                     className="flex items-center gap-4 px-5 py-3.5"
                   >
-                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#f4f0e5] text-xs font-bold text-[#765c26]">
+                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[var(--color-warm-ivory)] text-xs font-bold text-[var(--color-herbal-gold)]">
                       {index + 1}
                     </span>
-                    <span className="min-w-0 flex-1 truncate text-sm font-semibold text-[#18343a]">
+                    <span className="min-w-0 flex-1 truncate text-sm font-semibold text-[var(--color-botanical-charcoal)]">
                       {product.name}
                     </span>
-                    <span className="text-right text-xs text-[#68787a]">
+                    <span className="text-right text-xs text-[var(--color-forest-olive)]">
                       {product.quantity} sold
                       <br />
-                      <span className="font-semibold text-[#083847]">
+                      <span className="font-semibold text-[var(--color-forest-olive)]">
                         {formatPrice(product.revenue)}
                       </span>
                     </span>
@@ -442,7 +448,7 @@ export default async function AdminPage() {
               )}
             </ol>
           ) : (
-            <p className="p-5 text-sm text-[#68787a]">
+            <p className="p-5 text-sm text-[var(--color-forest-olive)]">
               Product sales will appear here when orders are placed.
             </p>
           )}

@@ -92,12 +92,12 @@ export function ProductCard({ product, detailHref }: ProductCardProps) {
               ) : null}
             </>
           ) : (
-            <span className="text-xs font-medium text-[#7c5a1c]">
+            <span className="text-xs font-medium text-[var(--color-herbal-gold)]">
               Price pending approval
             </span>
           )}
           {discount > 0 ? (
-            <span className="text-xs font-medium text-[#7c5a1c]">
+            <span className="text-xs font-medium text-[var(--color-herbal-gold)]">
               Save {formatPrice(product.mrp - product.sellingPrice)} ({discount}
               % off)
             </span>

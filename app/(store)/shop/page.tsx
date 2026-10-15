@@ -36,7 +36,7 @@ export default async function ShopPage({ searchParams }: PageProps) {
           action={
             <Link
               href="/shop"
-              className="bg-teal inline-flex min-h-11 items-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b]"
+              className="bg-teal inline-flex min-h-11 items-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)]"
             >
               Clear filters
             </Link>

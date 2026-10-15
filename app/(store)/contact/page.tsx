@@ -19,38 +19,38 @@ export default function ContactPage() {
       />
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="rounded border border-[#e3e7e1] bg-[#f9f7f1] p-6 text-sm text-[#425554]">
-          <h2 className="font-display text-2xl text-[#18343a]">
+        <div className="rounded border border-[var(--color-natural-beige)] bg-[var(--color-warm-ivory)] p-6 text-sm text-[var(--color-botanical-charcoal)]">
+          <h2 className="font-display text-2xl text-[var(--color-botanical-charcoal)]">
             Customer care
           </h2>
           <ul className="mt-5 space-y-4">
             <li>
-              <span className="block text-xs font-semibold tracking-[0.14em] text-[#8c6a2d] uppercase">
+              <span className="block text-xs font-semibold tracking-[0.14em] text-[var(--color-herbal-gold)] uppercase">
                 Phone
               </span>
               <a
                 href="tel:9762373730"
-                className="mt-1 block text-base font-medium text-[#18343a] hover:underline"
+                className="mt-1 block text-base font-medium text-[var(--color-botanical-charcoal)] hover:underline"
               >
                 9762373730
               </a>
             </li>
             <li>
-              <span className="block text-xs font-semibold tracking-[0.14em] text-[#8c6a2d] uppercase">
+              <span className="block text-xs font-semibold tracking-[0.14em] text-[var(--color-herbal-gold)] uppercase">
                 Email
               </span>
               <a
                 href="mailto:brahmanathpharma@gmail.com"
-                className="mt-1 block text-base font-medium text-[#18343a] hover:underline"
+                className="mt-1 block text-base font-medium text-[var(--color-botanical-charcoal)] hover:underline"
               >
                 brahmanathpharma@gmail.com
               </a>
             </li>
             <li>
-              <span className="block text-xs font-semibold tracking-[0.14em] text-[#8c6a2d] uppercase">
+              <span className="block text-xs font-semibold tracking-[0.14em] text-[var(--color-herbal-gold)] uppercase">
                 Address
               </span>
-              <span className="mt-1 block text-base text-[#18343a]">
+              <span className="mt-1 block text-base text-[var(--color-botanical-charcoal)]">
                 At Post Poonatgaon, Taluka Newasa, District Ahilyanagar,
                 Maharashtra, India
               </span>
@@ -58,15 +58,15 @@ export default function ContactPage() {
           </ul>
         </div>
 
-        <div className="rounded border border-[#e3e7e1] bg-white p-6 text-sm text-[#425554]">
+        <div className="rounded border border-[var(--color-natural-beige)] bg-white p-6 text-sm text-[var(--color-botanical-charcoal)]">
           <p>
             For general enquiries, product questions, and order support, please
             contact us using the details above. We typically respond as quickly
             as possible and appreciate a clear note with your order number or
             product details where relevant.
           </p>
-          <div className="mt-5 border-t border-[#e3e7e1] pt-5">
-            <p className="font-semibold text-[#18343a]">
+          <div className="mt-5 border-t border-[var(--color-natural-beige)] pt-5">
+            <p className="font-semibold text-[var(--color-botanical-charcoal)]">
               Before you write to us
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5">

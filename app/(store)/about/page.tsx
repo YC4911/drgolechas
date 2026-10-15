@@ -26,7 +26,7 @@ export default function AboutPage() {
       />
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-5 text-sm leading-7 text-[#4d5d5b]">
+        <div className="space-y-5 text-sm leading-7 text-[var(--color-botanical-charcoal)]">
           <p>
             Dr. Golecha&apos;s Herbal Farm brings together traditional Ayurvedic
             inspiration, herbal wellness, and natural food essentials in one
@@ -47,14 +47,14 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="rounded border border-[#e3e7e1] bg-[#f9f7f1] p-6">
-          <h2 className="font-display text-2xl text-[#18343a]">
+        <div className="rounded border border-[var(--color-natural-beige)] bg-[var(--color-warm-ivory)] p-6">
+          <h2 className="font-display text-2xl text-[var(--color-botanical-charcoal)]">
             What we value
           </h2>
-          <ul className="mt-5 space-y-3 text-sm text-[#425554]">
+          <ul className="mt-5 space-y-3 text-sm text-[var(--color-botanical-charcoal)]">
             {principles.map((principle) => (
               <li key={principle} className="flex gap-3">
-                <span className="mt-1 text-[#8c6a2d]">•</span>
+                <span className="mt-1 text-[var(--color-herbal-gold)]">•</span>
                 <span>{principle}</span>
               </li>
             ))}

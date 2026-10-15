@@ -254,7 +254,7 @@ export function CheckoutForm({
             email: customer.email,
             contact: customer.phone,
           },
-          theme: { color: "#0f5967" },
+          theme: { color: "#35452A" },
           handler: (paymentResponse) => {
             void (async () => {
               setIsSubmitting(true);
@@ -405,7 +405,7 @@ export function CheckoutForm({
         </div>
         <Link
           href={`/account/orders/${confirmation.orderId}`}
-          className="bg-teal mt-6 inline-flex min-h-11 items-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[#0c4b5b]"
+          className="bg-teal mt-6 inline-flex min-h-11 items-center rounded-sm px-5 text-sm font-semibold text-white hover:bg-[var(--color-botanical-charcoal)]"
         >
           View order
         </Link>
@@ -677,7 +677,7 @@ export function CheckoutForm({
                   marked as paid.
                 </p>
               ) : onlinePaymentMode === "mock" ? (
-                <p className="mt-2 text-xs text-[#8c6a2d]">
+                <p className="mt-2 text-xs text-[var(--color-herbal-gold)]">
                   Development mock mode only: no payment is taken or marked
                   successful; you can simulate failure or cancellation.
                 </p>
@@ -694,7 +694,7 @@ export function CheckoutForm({
               )}
             </div>
             {mockCheckout ? (
-              <div className="mt-5 border border-[#8c6a2d]/40 bg-[#fffaf0] p-4">
+              <div className="mt-5 border border-[var(--color-herbal-gold)]/40 bg-[var(--color-warm-ivory)] p-4">
                 <h2 className="text-ink text-sm font-semibold">
                   Development payment simulation
                 </h2>
@@ -799,7 +799,7 @@ export function CheckoutForm({
             {cart.totals.discount > 0 ? (
               <div className="flex justify-between">
                 <dt className="text-muted">Product savings</dt>
-                <dd className="text-[#35664b]">
+                <dd className="text-[var(--color-forest-olive)]">
                   −{formatPrice(cart.totals.discount)}
                 </dd>
               </div>
@@ -807,7 +807,7 @@ export function CheckoutForm({
             {cart.totals.couponDiscount > 0 ? (
               <div className="flex justify-between">
                 <dt className="text-muted">Coupon</dt>
-                <dd className="text-[#35664b]">
+                <dd className="text-[var(--color-forest-olive)]">
                   −{formatPrice(cart.totals.couponDiscount)}
                 </dd>
               </div>

@@ -15,6 +15,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 1. Copy `.env.example` to `.env` and set `MONGODB_URI` to a MongoDB connection string. Set `NEXT_PUBLIC_APP_URL` to the local or deployed app URL.
 2. For local development, this workspace is configured to use `mongodb://127.0.0.1:27017/dr_golechas`; start the local MongoDB service before running the app. Replace the URI in `.env` with your secured MongoDB Atlas or other deployment URI when using a remote database. Do not commit `.env` or share database credentials.
+   When using an Atlas `mongodb+srv://` URI, if Node.js is configured to use only loopback DNS servers and cannot resolve the cluster hostname, the app uses Google and Cloudflare public DNS for this process.
 3. Run `npm run db:check` to verify connectivity and `npm run verify:models` to check model registration.
 4. Seed demo categories, products, and unapproved placeholder testimonials only when you want those records in the selected database, using `npm run seed`.
 5. Check the connection at [http://localhost:3000/api/health](http://localhost:3000/api/health). It returns `503` when the database is unavailable and never returns connection details.

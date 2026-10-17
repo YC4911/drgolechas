@@ -64,62 +64,47 @@ export default async function HomePage() {
   return (
     <>
       <section className="bg-cream overflow-hidden">
-        <Container className="grid items-center gap-10 py-12 sm:py-16 xl:min-h-[680px] xl:grid-cols-[0.88fr_1.12fr] xl:gap-16 xl:py-20">
-          <div className="relative z-10 max-w-xl animate-[fade-up_700ms_ease-out_both] xl:py-10">
-            <p className="mb-6 text-xs font-semibold tracking-[0.2em] text-[var(--color-herbal-gold)] uppercase">
-              Herbal wellness, naturally
+        <h1 className="sr-only">Tradition You Trust, Wellness You Feel.</h1>
+        <div className="relative mx-auto h-[clamp(240px,31.25vw,500px)] w-full max-w-[1600px] overflow-hidden">
+          <Image
+            src="/dr-golechas-hero.png"
+            alt="Illustrated farmer holding a harvest crate among green fields, trees, and plants."
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <p
+            aria-hidden="true"
+            className="font-display text-teal absolute top-[8%] left-[6%] max-w-[88%] rounded-sm bg-[var(--color-cream)]/90 p-2 text-[clamp(1.5rem,6vw,2rem)] leading-tight backdrop-blur-sm sm:hidden"
+          >
+            Tradition You Trust,
+            <br />
+            Wellness You Feel.
+          </p>
+        </div>
+        <Container className="flex flex-col items-center justify-between gap-5 py-6 sm:flex-row">
+          {identity.tagline ? (
+            <p className="text-teal/70 text-center text-xs font-semibold tracking-[0.2em] uppercase sm:text-left">
+              {identity.tagline}
             </p>
-            <h1 className="font-display text-teal text-[clamp(2.25rem,5vw,3.5rem)] leading-[0.98] font-medium tracking-[-0.045em] xl:text-[clamp(2.75rem,4vw,3.5rem)]">
-              <span className="block">Nature&apos;s Goodness.</span>
-              <span className="mt-1 block">Tradition&apos;s Wisdom.</span>
-            </h1>
-            {identity.tagline ? (
-              <p className="text-teal/70 mt-6 text-xs font-semibold tracking-[0.2em] uppercase">
-                {identity.tagline}
-              </p>
-            ) : null}
-            <p className="text-ink/75 mt-6 max-w-md text-base leading-7 sm:text-lg sm:leading-8">
-              Discover thoughtfully crafted herbal wellness, traditional
-              Ayurvedic preparations, natural foods and botanical personal care
-              from Dr. Golecha&apos;s Herbal Farm.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link
-                href="/shop"
-                className="bg-teal inline-flex min-h-12 items-center justify-center gap-2 rounded-sm px-6 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-botanical-charcoal)]"
-              >
-                Shop All Products <ArrowRight aria-hidden="true" size={16} />
-              </Link>
-              <Link
-                href="/shop/farm-essentials"
-                className="border-teal/30 text-teal hover:border-teal inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border bg-white/50 px-6 text-sm font-semibold transition-colors hover:bg-white"
-              >
-                Explore Our Farm Essentials{" "}
-                <Sparkles aria-hidden="true" size={16} />
-              </Link>
-            </div>
-          </div>
-          <div className="relative mx-auto aspect-[1.15/1] w-full max-w-2xl overflow-hidden rounded-sm bg-[var(--color-natural-beige)] xl:aspect-[0.96/1]">
-            <Image
-              src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=90"
-              alt="Natural herbal wellness ingredients and traditional products"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 55vw"
-              className="object-cover"
-            />
-            <div className="from-teal/35 absolute inset-0 bg-gradient-to-t via-transparent to-transparent" />
-            <div className="border-gold absolute bottom-5 left-5 max-w-[280px] border-l-2 pl-4 text-white sm:bottom-7 sm:left-7">
-              <p className="text-xs tracking-[0.16em] text-white/80 uppercase">
-                Rooted in tradition
-              </p>
-              <p className="font-display mt-1 text-2xl">
-                Thoughtful wellness for everyday life.
-              </p>
-            </div>
-            <span className="bg-paper/80 text-teal absolute top-5 right-5 hidden rounded-full border border-white/60 px-4 py-2 text-xs font-medium backdrop-blur-sm sm:block">
-              From farm to home
-            </span>
+          ) : (
+            <span aria-hidden="true" />
+          )}
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              href="/shop"
+              className="bg-teal inline-flex min-h-12 items-center justify-center gap-2 rounded-sm px-6 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-botanical-charcoal)]"
+            >
+              Shop All Products <ArrowRight aria-hidden="true" size={16} />
+            </Link>
+            <Link
+              href="/shop/farm-essentials"
+              className="border-teal/30 text-teal hover:border-teal inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border bg-white/50 px-6 text-sm font-semibold transition-colors hover:bg-white"
+            >
+              Explore Our Farm Essentials{" "}
+              <Sparkles aria-hidden="true" size={16} />
+            </Link>
           </div>
         </Container>
       </section>
